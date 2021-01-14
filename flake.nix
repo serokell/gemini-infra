@@ -47,6 +47,15 @@
     in {
       nixosConfigurations = mapAttrs (const mkSystem) servers;
 
+      nixosModules = import ./modules;
+
+      overlay = import ./packages;
+
+      packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ]
+        (system: {
+          inherit (nixpkgs.legacyPackages.${system}.extend self.overlay) mtg;
+        });
+
       deploy.magicRollback = true;
       deploy.autoRollback = true;
 
@@ -56,9 +65,7 @@
         sshOpts = [ "-p" "17788" ];
 
         profiles.system.user = "root";
-        profiles.system.path = deploy-rs.lib.${system}.setActivate
-          nixosConfig.config.system.build.toplevel
-          "$PROFILE/bin/switch-to-configuration switch";
+        profiles.system.path = deploy-rs.lib.${system}.activate.nixos nixosConfig;
       }) self.nixosConfigurations;
 
       devShell = mapAttrs (system: deploy:

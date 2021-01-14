@@ -2,12 +2,14 @@
 {
   imports = [
     "${modulesPath}/virtualisation/amazon-image.nix"
-    inputs.serokell-nix.nixosModules.mtg
+    inputs.self.nixosModules.mtg
   ];
 
   vault-secrets.secrets.mtg = {
     user = "mtg";
   };
+
+  nixpkgs.overlays = [ inputs.self.overlay ];
 
   services.mtg = {
     enable = true;
