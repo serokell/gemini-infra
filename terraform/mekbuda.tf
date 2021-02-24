@@ -14,7 +14,7 @@ resource "aws_instance" "mekbuda" {
   ]
 
   # Instance parameters
-  instance_type = "t3a.micro"
+  instance_type = "t3a.nano"
   monitoring = true
 
   # Disk type, size, and contents
