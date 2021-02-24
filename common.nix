@@ -7,6 +7,8 @@
 
   networking.domain = "gemini.serokell.team";
 
+  systemd.services.amazon-init.enable = false;
+
   vault-secrets = {
     vaultPathPrefix = "kv/sys/gemini";
     vaultAddress = "https://vault.serokell.org:8200";
