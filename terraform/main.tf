@@ -7,7 +7,7 @@ terraform {
     region = "eu-west-2"
   }
   ## Prevent unwanted updates
-  required_version = "~> 0.12.29" # Use nix-shell or nix develop
+  required_version = "= 0.12.29" # Use nix-shell or nix develop
 }
 
 resource "aws_route53_zone" "gemini_serokell_team" {
@@ -130,7 +130,7 @@ resource "aws_security_group" "mtg" {
 # Network resources
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "~> v2.46.0"
+  version = "= v2.46.0"
 
   name = "gemini-vpc"
   cidr = "10.0.0.0/16"
