@@ -1,0 +1,108 @@
+{ config, pkgs, lib, options, inputs, ... }:
+let
+  swampwalk-profile = "/nix/var/nix/profiles/per-user/deploy/swampwalk";
+  swampwalk-frontend-profile = "/nix/var/nix/profiles/per-user/deploy/swampwalk-frontend";
+
+in
+{
+  nix.nixPath = options.nix.nixPath.default ++ [ "nixpkgs-overlays=/etc/nix/overlays.nix" ];
+  environment.etc."nix/overlays.nix".source = ./overlays.nix;
+  nixpkgs.overlays = import ./overlays.nix;
+
+  serokell-users = {
+    wheelUsers = [ "sweater" ];
+  };
+
+  environment.systemPackages = with pkgs; [
+    stack
+    git
+    htop
+    nnn
+    vim
+    rsync
+    tmux
+    python
+    rebar3
+    elixir
+    erlang
+    cargo
+    gcc
+  ];
+
+  systemd.services.swampwalk = {
+    wantedBy = [ "multi-user.target" ];
+    environment.TODO_SWAMP_1_BASE_PATH = "/home/share";
+    environment.NIX_PATH = builtins.concatStringsSep ":" (options.nix.nixPath.default ++ [ "nixpkgs-overlays=/etc/nix/overlays.nix" ]);
+    path = [ "/run/wrappers" ];
+    serviceConfig = {
+      Restart = "on-failure";
+      User = "sweater";
+      Group = "users";
+      ExecStart = "${swampwalk-profile}/bin/swampwalk-server";
+    };
+  };
+
+  users.users.deploy = {
+    useDefaultShell = true;
+
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA1MvqWKMAejgaBfm0mXqwRK7QZ6NNOzCGj9aX+tiiow" ];
+  };
+
+  security.sudo.extraRules = [{
+    users = [ "deploy" ];
+    commands = [{
+      command = "/run/current-system/sw/bin/systemctl restart swampwalk";
+      options = [ "NOPASSWD" ];
+    }];
+  }];
+
+  # add swampwalk-related executables to PATH
+  environment.variables.PATH = "${swampwalk-profile}/bin";
+
+  services.nginx = {
+    enable = true;
+    openFirewall = true;
+    virtualHosts = {
+      swampwalk = {
+        forceSSL = true;
+        enableACME = true;
+
+        serverName = with config.networking; "${hostName}.${domain}";
+        serverAliases = [ "tt.serokell.io" ];
+
+        locations."/" = {
+          root = swampwalk-frontend-profile;
+          tryFiles = "$uri /index.html =404";
+        };
+
+        locations."/api/ws/" = {
+          proxyPass = "http://127.0.0.1:9160/";
+          proxyWebsockets = true;
+        };
+
+        locations."/api/v0/" = {
+          proxyPass = "http://127.0.0.1:8000/";
+        };
+      };
+    };
+  };
+
+  vault-secrets.secrets.oauth2_proxy.environmentVariableNamePrefix = "OAUTH2_PROXY";
+  services.oauth2_proxy = {
+    enable = true;
+
+    # contains oauth2 client id, oauth2 client secret, and a cookie secret seed for signing cookies
+    keyFile = "${config.vault-secrets.secrets.oauth2_proxy}/environment";
+
+    requestLogging = false; # don't log each request
+    redirectURL = "https://tt.serokell.io/oauth2/callback"; # callback url for the auth provider
+    email.domains = [ "serokell.io" ]; # only allow users with '@serokell.io' email address
+    extraConfig.whitelist-domain = [ "tt.serokell.io" ]; # allowed domains to redirect to after authentication
+    cookie.domain = "tt.serokell.io"; # domain to set cookie for after authentication
+    nginx.virtualHosts = [ "swampwalk" ]; # vhosts to use the proxy for
+
+    # default cookie name '_oauth2_proxy' is used by jupiter for
+    # all '.serokell.io' subdomains, use a different name for tt
+    cookie.name = "_oauth2_proxy_tt";
+  };
+}
