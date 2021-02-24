@@ -149,7 +149,6 @@ module "vpc" {
 
   enable_dhcp_options              = true
   dhcp_options_domain_name         = "gemini.serokell.team"
-  dhcp_options_domain_name_servers = ["10.0.0.2"]
 
   tags = {
     Terraform = "true"
