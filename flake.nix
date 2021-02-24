@@ -34,6 +34,7 @@
         let pkgs' = pkgs.extend serokell-nix.overlay;
         in {
           trailing-whitespace = pkgs'.build.checkTrailingWhitespace ./.;
+          # FIXME VPC provider is not packaged
           # terraform = pkgs.runCommand "terraform-check" {
           #   src = ./terraform;
           #   buildInputs = [ (terraformFor pkgs) ];
