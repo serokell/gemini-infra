@@ -1,5 +1,5 @@
 {
-  description = "NixOS systems for the build cluster";
+  description = "NixOS systems for internal services";
 
   inputs = {
     nixpkgs.url = "github:serokell/nixpkgs";
