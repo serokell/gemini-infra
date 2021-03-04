@@ -9,9 +9,10 @@
       flake = false;
     };
     deploy-rs.url = "github:serokell/deploy-rs";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, serokell-nix, deploy-rs, ... }@inputs:
+  outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, ... }@inputs:
     let
       inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
       inherit (builtins) readDir mapAttrs;
@@ -25,37 +26,13 @@
           specialArgs.inputs = inputs;
         };
 
-      deployChecks =
-        mapAttrs (_: lib: lib.deployChecks self.deploy) deploy-rs.lib;
-
       terraformFor = pkgs: pkgs.terraform.withPlugins (p: with p; [ aws ]);
-
-      checks = mapAttrs (_: pkgs:
-        let pkgs' = pkgs.extend serokell-nix.overlay;
-        in {
-          trailing-whitespace = pkgs'.build.checkTrailingWhitespace ./.;
-          # FIXME VPC provider is not packaged
-          # terraform = pkgs.runCommand "terraform-check" {
-          #   src = ./terraform;
-          #   buildInputs = [ (terraformFor pkgs) ];
-          # } ''
-          #   cp -r $src ./terraform
-          #   terraform init -backend=false terraform
-          #   terraform validate terraform
-          #   touch $out
-          # '';
-        }) nixpkgs.legacyPackages;
     in {
       nixosConfigurations = mapAttrs (const mkSystem) servers;
 
       nixosModules = import ./modules;
 
       overlay = import ./packages;
-
-      packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ]
-        (system: {
-          inherit (nixpkgs.legacyPackages.${system}.extend self.overlay) mtg;
-        });
 
       deploy.magicRollback = true;
       deploy.autoRollback = true;
@@ -66,15 +43,37 @@
         sshOpts = [ "-p" "17788" ];
 
         profiles.system.user = "root";
-        profiles.system.path = deploy-rs.lib.${system}.activate.nixos nixosConfig;
+        profiles.system.path =
+          deploy-rs.lib.${system}.activate.nixos nixosConfig;
       }) self.nixosConfigurations;
+    } // flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
+      let pkgs = nixpkgs.legacyPackages.${system}.extend serokell-nix.overlay;
+      in {
 
-      devShell = mapAttrs (system: deploy:
-        let pkgs = nixpkgs.legacyPackages.${system}.extend serokell-nix.overlay;
-        in pkgs.mkShell {
-          buildInputs = [ deploy (terraformFor pkgs) pkgs.nixUnstable ];
-        }) deploy-rs.defaultPackage;
+        packages = {
+          inherit (pkgs.extend self.overlay) mtg;
+        };
 
-      checks = recursiveUpdate deployChecks checks;
-    };
+        devShell = pkgs.mkShell {
+          buildInputs = [
+            deploy-rs.packages.${system}.deploy-rs
+            (terraformFor pkgs)
+            pkgs.nixUnstable
+          ];
+        };
+
+        checks = deploy-rs.lib.${system}.deployChecks self.deploy // {
+          trailing-whitespace = pkgs.build.checkTrailingWhitespace ./.;
+          # FIXME VPC provider is not packaged
+          # terraform = pkgs.runCommand "terraform-check" {
+          #   src = ./terraform;
+          #   buildInputs = [ (terraformFor pkgs) ];
+          # } ''
+          #   cp -r $src ./terraform
+          #   terraform init -backend=false terraform
+          #   terraform validate terraform
+          #   touch $out
+          # '';
+        };
+      });
 }
