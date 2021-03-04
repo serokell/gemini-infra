@@ -1,0 +1,3 @@
+{
+  mtg = import ./mtg.nix;
+}
