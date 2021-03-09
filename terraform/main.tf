@@ -14,6 +14,10 @@ resource "aws_route53_zone" "gemini_serokell_team" {
   name = "gemini.serokell.team"
 }
 
+data "aws_route53_zone" "serokell_team" {
+  name = "serokell.team"
+}
+
 # Grab the latest NixOS AMI built by Serokell
 data "aws_ami" "nixos" {
   most_recent = true
