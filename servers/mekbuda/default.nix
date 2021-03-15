@@ -1,7 +1,8 @@
 { modulesPath, inputs, config, lib, ... }:
 {
   imports = [
-    "${modulesPath}/virtualisation/amazon-image.nix"
+    inputs.serokell-nix.nixosModules.ec2
+
     inputs.self.nixosModules.mtg
   ];
 
