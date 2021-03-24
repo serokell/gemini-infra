@@ -30,5 +30,5 @@
       ];
     } ];
 
-  networking.hostName = "castor";
+  networking.hostName = "jishui";
 }

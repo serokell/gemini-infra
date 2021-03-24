@@ -5,7 +5,7 @@ let
   inherit (pkgs) writeText;
   defaultConfig = import "${libPath}/common/edna/backend-config.nix";
   configFile = writeText "config.yaml" (toJSON (recursiveUpdate defaultConfig {
-    db.initialisation.mode = "enable-with-drop";
+    db.initialisation.mode = "enable";
   }));
 in
 {
@@ -13,5 +13,5 @@ in
     "${configFile}:/config.yaml:ro"
   ];
 
-  services.nginx.virtualHosts.edna.serverAliases = [ "staging.edna.serokell.team" ];
+  services.nginx.virtualHosts.edna.serverAliases = [ "demo.edna.serokell.team" ];
 }
