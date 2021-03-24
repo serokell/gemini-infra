@@ -25,7 +25,10 @@
         nixosSystem {
           inherit system;
           modules = [ config ./common.nix ];
-          specialArgs.inputs = inputs;
+          specialArgs = {
+            inputs = inputs;
+            libPath = toString ./lib;
+          };
         };
 
       terraformFor = pkgs: pkgs.terraform.withPlugins (p: with p; [ aws ]);
