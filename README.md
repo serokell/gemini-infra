@@ -37,8 +37,10 @@ All necessary programs and dependencies are provided by Nix in `nix-shell` or `n
 
 | Name      | Function         | IP   |
 | :-------: | :--------------: | :--: |
-| Mekbuda   | MTProxy server   |      |
 | Alhena    | Hermetic         |      |
+| Castor    | EDNA Staging     |      |
+| Jishui    | EDNA Demo        |      |
+| Mekbuda   | MTProxy server   |      |
 
 <!-- Don't forget to add the servers on https://www.notion.so/serokell/Server-Naming-Scheme-c189819000164fb090377c75e4ce7da6 -->
 
