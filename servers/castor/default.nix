@@ -6,6 +6,11 @@
     ./edna.nix
   ];
 
+  serokell-users = {
+    wheelUsers = [ "gromak" ];
+    regularUsers = [ "pva701" "sashasashasasha151" ];
+  };
+
   # Deployment user
   users.users.deploy = {
     useDefaultShell = true;
