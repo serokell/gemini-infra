@@ -11,6 +11,7 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     flake-utils.url = "github:numtide/flake-utils";
     vault-secrets.url = "github:serokell/vault-secrets";
+    hermetic.url = "github:serokell/hermetic";
   };
 
   outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets

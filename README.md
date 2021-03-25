@@ -35,9 +35,10 @@ All necessary programs and dependencies are provided by Nix in `nix-shell` or `n
 
 ## Servers
 
-| Name    | Function       | IP |
-|:-------:|:--------------:|:--:|
-| Mekbuda | MTProxy server |    |
+| Name      | Function         | IP   |
+| :-------: | :--------------: | :--: |
+| Mekbuda   | MTProxy server   |      |
+| Alhena    | Hermetic         |      |
 
 <!-- Don't forget to add the servers on https://www.notion.so/serokell/Server-Naming-Scheme-c189819000164fb090377c75e4ce7da6 -->
 
