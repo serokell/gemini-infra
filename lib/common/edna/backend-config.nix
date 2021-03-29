@@ -11,4 +11,5 @@
       init-script = "/init.sql";
     };
   };
+  logging = "Dev";
 }
