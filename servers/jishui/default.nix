@@ -36,4 +36,5 @@
     } ];
 
   networking.hostName = "jishui";
+  wireguard-ip-address = "172.21.0.12";
 }

@@ -27,4 +27,5 @@
   };
 
   networking.hostName = "mekbuda";
+  wireguard-ip-address = "172.21.0.13";
 }
