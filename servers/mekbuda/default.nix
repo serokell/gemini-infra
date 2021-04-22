@@ -14,7 +14,7 @@
 
   services.mtg = {
     enable = true;
-    secretFile = config.vault-secrets.secrets.mtg;
+    secretFile = "${config.vault-secrets.secrets.mtg}/secret";
   };
 
   systemd.services.mtg.serviceConfig = {
