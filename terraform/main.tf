@@ -7,7 +7,7 @@ terraform {
     region = "eu-west-2"
   }
   ## Prevent unwanted updates
-  required_version = "= 0.12.29" # Use nix-shell or nix develop
+  required_version = "= 0.12.30" # Use nix-shell or nix develop
 }
 
 resource "aws_route53_zone" "gemini_serokell_team" {
