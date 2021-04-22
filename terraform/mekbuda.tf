@@ -47,3 +47,11 @@ resource "aws_route53_record" "mekbuda_gemini_serokell_team_ipv6" {
   ttl     = "60"
   records = [aws_instance.mekbuda.ipv6_addresses[0]]
 }
+
+resource "aws_route53_record" "telegram_serokell_team" {
+  zone_id = data.aws_route53_zone.serokell_team.zone_id
+  name    = "telegram.${data.aws_route53_zone.serokell_team.name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = [ aws_route53_record.mekbuda_gemini_serokell_team_ipv4.name ]
+}
