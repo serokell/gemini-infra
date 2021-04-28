@@ -18,6 +18,10 @@ data "aws_route53_zone" "serokell_team" {
   name = "serokell.team"
 }
 
+data "aws_route53_zone" "serokell_io" {
+  name = "serokell.io"
+}
+
 # Grab the latest NixOS AMI built by Serokell
 data "aws_ami" "nixos" {
   most_recent = true
