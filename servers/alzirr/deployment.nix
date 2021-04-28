@@ -11,6 +11,7 @@ in
 
   serokell-users = {
     wheelUsers = [ "sweater" ];
+    regularUsers = [ "slowpnir" ];
   };
 
   environment.systemPackages = with pkgs; [
