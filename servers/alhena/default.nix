@@ -28,5 +28,5 @@ in {
   };
 
   networking.hostName = "alhena";
-  wireguard-ip-address = "172.21.0.9";
+  wireguard-ip-address = "172.21.0.10";
 }
