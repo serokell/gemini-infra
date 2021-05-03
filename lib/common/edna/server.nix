@@ -6,7 +6,7 @@
     profile = "/nix/var/nix/profiles/per-user/deploy/edna-docker";
   in
   {
-    networking.firewall.allowedTCPPorts = [ 80 443 9100 ];
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     virtualisation.docker = {
       enable = true;

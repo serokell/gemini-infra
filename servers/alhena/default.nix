@@ -7,7 +7,7 @@ in {
     inputs.hermetic.nixosModules.hermetic
   ];
 
-  networking.firewall.allowedTCPPorts = [ 80 443 9100 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   vault-secrets.secrets.hermetic.environmentVariableNamePrefix = "hermetic";
   services.hermetic = {
@@ -28,4 +28,5 @@ in {
   };
 
   networking.hostName = "alhena";
+  wireguard-ip-address = "172.21.0.9";
 }

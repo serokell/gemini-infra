@@ -36,4 +36,5 @@
     } ];
 
   networking.hostName = "castor";
+  wireguard-ip-address = "172.21.0.11";
 }

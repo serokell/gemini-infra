@@ -9,9 +9,9 @@ resource "aws_instance" "alhena" {
   vpc_security_group_ids = [
     aws_security_group.egress_all.id,
     aws_security_group.mtg.id,
-    aws_security_group.prometheus_exporter_node.id,
     aws_security_group.ssh.id,
     aws_security_group.http.id,
+    aws_security_group.wireguard.id,
   ]
 
   # Instance parameters

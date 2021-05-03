@@ -59,21 +59,6 @@ resource "aws_security_group" "egress_all" {
   }
 }
 
-# Allow traffic for the prometheus exporter
-resource "aws_security_group" "prometheus_exporter_node" {
-  name = "prometheus_exporter_node"
-  description = "Allow Prometheus Node Exporter data scraping"
-  vpc_id = module.vpc.vpc_id
-
-  ingress {
-    from_port = 9100
-    to_port = 9100
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-}
-
 # Allow SSH traffic
 resource "aws_security_group" "ssh" {
   name = "ssh"
@@ -130,6 +115,21 @@ resource "aws_security_group" "mtg" {
     from_port = 3128
     to_port = 3128
     protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
+
+# Allow wireguard traffic
+resource "aws_security_group" "wireguard" {
+  name = "ssh"
+  description = "Allow inbound and outbound traffic for wireguard"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port        = 51820
+    to_port          = 51820
+    protocol         = "udp"
     cidr_blocks = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
