@@ -122,7 +122,7 @@ resource "aws_security_group" "mtg" {
 
 # Allow wireguard traffic
 resource "aws_security_group" "wireguard" {
-  name = "ssh"
+  name = "wireguard"
   description = "Allow inbound and outbound traffic for wireguard"
   vpc_id = module.vpc.vpc_id
 
