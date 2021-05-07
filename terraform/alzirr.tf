@@ -21,3 +21,11 @@ resource "aws_route53_record" "tt_serokell_io" {
   ttl     = "60"
   records = ["alzirr.${aws_route53_zone.gemini_serokell_team.name}"]
 }
+
+resource "aws_route53_record" "tt2_serokell_io" {
+  zone_id = data.aws_route53_zone.serokell_io.zone_id
+  name    = "tt2.serokell.io"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["alzirr.${aws_route53_zone.gemini_serokell_team.name}"]
+}
