@@ -3,10 +3,13 @@
     inherit (builtins) toJSON;
     inherit (pkgs) writeText;
 
+    vs = config.vault-secrets.secrets;
     profile = "/nix/var/nix/profiles/per-user/deploy/edna-docker";
   in
   {
     networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+    vault-secrets.secrets.docker-backend = {};
 
     virtualisation.docker = {
       enable = true;
@@ -41,6 +44,8 @@
         image = "ghcr.io/serokell/edna-backend";
         imageFile = "${profile}/backend.tar.gz";
         dependsOn = [ "postgres" ];
+
+        environmentFile = "${vs.docker-backend}/environment";
 
         cmd = [
           "-c" "/config.yaml"
