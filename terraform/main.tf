@@ -22,6 +22,10 @@ data "aws_route53_zone" "serokell_io" {
   name = "serokell.io"
 }
 
+data "aws_route53_zone" "serokell_net" {
+  name = "serokell.net"
+}
+
 # Grab the latest NixOS AMI built by Serokell
 data "aws_ami" "nixos" {
   most_recent = true
@@ -42,6 +46,11 @@ data "aws_ami" "nixos" {
 resource "aws_key_pair" "balsoft" {
   key_name = "balsoft"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDd2OdcSHUsgezuV+cpFqk9+Svtup6PxIolv1zokVZdqvS8qxLsA/rwYmQgTnuq4/zK/GIxcUCH4OxYlW6Or4M4G7qrDKcLAUrRPWkectqEooWRflZXkfHduMJhzeOAsBdMfYZQ9024GwKr/4yriw2BGa8GbbAnQxiSeTipzvXHoXuRME+/2GsMFAfHFvxzXRG7dNOiLtLaXEjUPUTcw/fffKy55kHtWxMkEvvcdyR53/24fmO3kLVpEuoI+Mp1XFtX3DvRM9ulgfwZUn8/CLhwSLwWX4Xf9iuzVi5vJOJtMOktQj/MwGk4tY/NPe+sIk+nAUKSdVf0y9k9JrJT98S/ cardno:000610645773"
+}
+
+resource "hcloud_ssh_key" "zhenya" {
+  name = "zhenya"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVESCckOB+2NoojRR+rMl2N4OTf7PQR2BvcxF7cMeRtpSDnMQwbitJNCm0tNygUa8Sn5obaS0HSTfvefIPaDOhgDwi/hGznHiCI3+cAesi/GXXq5p+ota/Ab2oQOFsAquy3sGxNaMhVwU2FU8uyDmiCEbS8kKWAW/YXVqRTPsbkkNBJIwetvzXyrFrYZeCdShZmcPtOGHLpUByKhXkQHXpZ86Bbu9NH/0GsFamADlRaoQQa1+oTWPCWvwsctsAUcHw4/jpeHQffCFATYYS57xYXKkjMZJHypDyjJB9U40bX/HZYaTMP4fDlXeEO/OU2YkAJdt0NBylcE1WzFrOKRNBCcgfgHBzsD3rxMvVNPAl/JXTiEBpXZoza8p+gmQRMMe9SDQLz9pRN7paRsAi1qaQnFV1DbCBPrY2OezJujIuRKc8t0D3nEgg5rcYi2fcFkJscwAsvspTBnK9LCC5ojqa0O5BGTYwlxp2cUkFbWyM2oaRqcQo3ypPaJBybo/TF2FqqHlWNlckwOPPTGngThT6kkFEF+kqMUlUdokiWcpl2K7psfl5RdYGIFfey74NiqoSZ9gyta2WBkY7J41YrsQh20vtGhWWYl/+pDo3cggqmP0fEmD5CaPZXimvHjOjfcxGMooPpkOl3G3I0eQSpvlPpLZHEhh5fThFIAF2RxN/IQ== zhenyavinogradov@gmail.com"
 }
 
 # Allow ALL egress traffic
