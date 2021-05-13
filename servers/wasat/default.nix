@@ -62,7 +62,7 @@ in {
   # dns server blocking malicious hostnames
   services.dnsmasq = {
     enable = true;
-    servers = [ "1.1.1.1" ];
+    servers = [ "1.1.1.1" "1.0.0.1" ];
     resolveLocalQueries = false;
     extraConfig = ''
       interface=wg-serokell
