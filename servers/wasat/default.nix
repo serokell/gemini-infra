@@ -13,7 +13,7 @@ let
   '';
 
   # forward port 53 on eth0 to wireguard, for networks that block non-standard ports
-  iptables-rule = "-t nat -A PREROUTING -i eth0 -p udp --dport 53 -j REDIRECT --to-port 35944";
+  iptables-rule = "PREROUTING -t nat -i eth0 -p udp --dport 53 -j REDIRECT --to-port 35944";
 
 in {
   imports = [
