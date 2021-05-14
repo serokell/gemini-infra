@@ -436,6 +436,7 @@
         "hermetic": "hermetic",
         "nixpkgs": "nixpkgs_3",
         "serokell-nix": "serokell-nix",
+        "stevenblack-hosts": "stevenblack-hosts",
         "vault-secrets": "vault-secrets"
       }
     },
@@ -458,6 +459,23 @@
       "original": {
         "owner": "serokell",
         "repo": "serokell.nix",
+        "type": "github"
+      }
+    },
+    "stevenblack-hosts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620330688,
+        "narHash": "sha256-luRdAUWJvZwyN0acYIDeN5NXruH0/FI358tf5l6NggQ=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "b933b7dc3f6a4cf647a943a29b1a01779b604ebc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "StevenBlack",
+        "ref": "3.7.1",
+        "repo": "hosts",
         "type": "github"
       }
     },

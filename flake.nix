@@ -12,6 +12,10 @@
     flake-utils.url = "github:numtide/flake-utils";
     vault-secrets.url = "github:serokell/vault-secrets";
     hermetic.url = "github:serokell/hermetic";
+    stevenblack-hosts = {
+      url = "github:StevenBlack/hosts/3.7.1";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
@@ -32,7 +36,7 @@
           };
         };
 
-      terraformFor = pkgs: pkgs.terraform.withPlugins (p: with p; [ aws ]);
+      terraformFor = pkgs: pkgs.terraform.withPlugins (p: with p; [ aws vault hcloud ]);
     in {
       nixosConfigurations = mapAttrs (const mkSystem) servers;
 
