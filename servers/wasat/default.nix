@@ -23,7 +23,7 @@ in {
   networking.hostName = "wasat";
   wireguard-ip-address = "172.21.0.28";
 
-  hetzner.ipv6Address = "TBD";
+  hetzner.ipv6Address = "2a01:4f9:c011:27bc::1";
 
   # ensure ethernet interface name is eth0
   networking.usePredictableInterfaceNames = false;
