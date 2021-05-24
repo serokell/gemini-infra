@@ -29,19 +29,18 @@ resource "aws_route53_record" "wasat_gemini_serokell_team_ipv6" {
 }
 
 # serokell.net DNS records (can't be a CNAME becase it's a zone apex)
-# (switch later)
-# resource "aws_route53_record" "serokell_net_ipv4" {
-#   zone_id = data.aws_route53_zone.serokell_net.zone_id
-#   name    = "serokell.net"
-#   type    = "A"
-#   ttl     = "60"
-#   records = [hcloud_server.wasat.ipv4_address]
-# }
+resource "aws_route53_record" "serokell_net_ipv4" {
+  zone_id = data.aws_route53_zone.serokell_net.zone_id
+  name    = "serokell.net"
+  type    = "A"
+  ttl     = "60"
+  records = [hcloud_server.wasat.ipv4_address]
+}
 
-# resource "aws_route53_record" "serokell_net_ipv6" {
-#   zone_id = data.aws_route53_zone.serokell_net.zone_id
-#   name    = "serokell.net"
-#   type    = "AAAA"
-#   ttl     = "60"
-#   records = [hcloud_server.wasat.ipv6_address]
-# }
+resource "aws_route53_record" "serokell_net_ipv6" {
+  zone_id = data.aws_route53_zone.serokell_net.zone_id
+  name    = "serokell.net"
+  type    = "AAAA"
+  ttl     = "60"
+  records = [hcloud_server.wasat.ipv6_address]
+}
