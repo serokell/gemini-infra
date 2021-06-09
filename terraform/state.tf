@@ -16,8 +16,7 @@ resource "aws_s3_bucket" "tfstate" {
 resource "aws_dynamodb_table" "tfstatelock" {
   name = "serokell-gemini-tfstate-lock"
   hash_key = "LockID"
-  read_capacity = 20
-  write_capacity = 20
+  billing_mode = "PAY_PER_REQUEST"
 
   lifecycle {
     prevent_destroy = true
