@@ -29,7 +29,7 @@
   "30" = "3roYdsqD1wE+GnvBxr5QD1rndIzBb/CkHlzYvnEhQHc="; # Alexander Rukin (Mac)
   "31" = "34VXmEINtXapvYddPjg3rke8M0Uo7gSa6IGnFSXYNQQ="; # Alexander Rukin (iOS)
   # (offboarded) "32" = "1ECZItddDjDIaU2gQQl/hFvZIn65/i8t1SQqaRpl70E="; # Artem Ohanjanyan 1 (laptop)
-  "33" = "oIV+kGmyAfDpXTjE8ubJ0Ww/pA2tvLmgLxOriUAUOxs="; # Chris Höppner
+  # (offboarded - HR-206) "33" = "oIV+kGmyAfDpXTjE8ubJ0Ww/pA2tvLmgLxOriUAUOxs="; # Chris Höppner
   "34" = "srEmFWWYhzhjWXtZ0ewU0cTyW329jizzT7ElDzBCqkg="; # Jonn Mostovoy (laboratory in latvia)
   # (offboarded - HR-88) "35" = "5KaouRvlfh45mG64iPXWw9uut4JemAtayJ9lotjEbQo="; # Damir Garifullin
   "36" = "mhsybC2wiwIlRIDIJYqZEE5aIR8S7fkNxIPIubcVtSU="; # office SPb (srkrt)
