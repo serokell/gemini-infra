@@ -51,6 +51,6 @@
   "52" = "KSK3+6TuGRyf9xe49C5+q2VhWYhWBbsm+B8UMDxFg3Y="; # Alexander Bantyev @balsoft
   "53" = "wPKA+1WYVAF6QhlLSJAZsk49I0YkoljGaQyA/AgWsjo="; # Alexey Khachiyants (Mac)
   "54" = "noNARSZ3ARTol2/UT4fq5UlM5FR8dtcxSuq7E/zWWSA="; # Dmitri Puzyrev (ubuntu)
-  "55" = "H8qNx/yIzFmMDVnkJMqoM5OB2+77i0xJ8XK/boFuSDw="; # Andrey Demidenko (tarvos)
+  "55" = "qW2StgTSXBfmqo9++Bde76UZegv4gKH+wnR9eNmTRhw="; # Andrey Demidenko (tarvos)
   "56" = "sW7lM1ARU3SyDIybTKoBcnUduNBkC4q3MmQFwtVbySw="; # Andrey Demidenko (phone)
 }
