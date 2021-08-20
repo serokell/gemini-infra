@@ -13,7 +13,7 @@ in
 
   serokell-users = {
     wheelUsers = [ "sweater" ];
-    regularUsers = [ "slowpnir" ];
+    regularUsers = [ "slowpnir" "diogo" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -80,6 +80,7 @@ in
   services.nginx = {
     enable = true;
     openFirewall = true;
+    addSecurityHeaders = false;
     virtualHosts = {
       swampwalk = {
         forceSSL = true;
