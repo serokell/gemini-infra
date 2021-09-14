@@ -13,6 +13,7 @@
 
   # Deployment user
   users.users.deploy = {
+    isSystemUser = true;
     useDefaultShell = true;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOA+/SMYgdibz1vkEKl2Hyi5epcZ91Q+vjWUoLiATj4R edna" ];
   };
