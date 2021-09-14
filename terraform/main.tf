@@ -6,8 +6,24 @@ terraform {
     key    = "gemini/terraform.tfstate"
     region = "eu-west-2"
   }
+
   ## Prevent unwanted updates
-  required_version = "= 0.12.30" # Use nix-shell or nix develop
+  required_version = "1.0.4" # Use nix-shell or nix develop
+
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 3.43.0"
+    }
+    hcloud = {
+      source = "nixpkgs/hcloud"
+      version = "~> 1.26.0"
+    }
+    vault = {
+      source = "hashicorp/vault"
+      version = "~> 2.11.0"
+    }
+  }
 }
 
 resource "aws_route53_zone" "gemini_serokell_team" {
@@ -147,7 +163,6 @@ resource "aws_security_group" "wireguard" {
 # Network resources
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  version = "= v2.46.0"
 
   name = "gemini-vpc"
   cidr = "10.0.0.0/16"
