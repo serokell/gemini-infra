@@ -1,5 +1,6 @@
 .envrc
 .terraform/
+.terraform.lock.hcl
 result*
 .tmp
 terraform.tfstate*

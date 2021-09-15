@@ -45,7 +45,7 @@
         imageFile = "${profile}/backend.tar.gz";
         dependsOn = [ "postgres" ];
 
-        environmentFile = "${vs.docker-backend}/environment";
+        environmentFiles = [ "${vs.docker-backend}/environment" ];
 
         cmd = [
           "-c" "/config.yaml"
