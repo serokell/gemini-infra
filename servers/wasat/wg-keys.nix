@@ -17,7 +17,7 @@
   "17" = "wNLlDMF7HwTlRqOZzyjJCGrXNbrtIdjnYeOukTkOvRE="; # Ivan Gromakovskii 2 (mac)
   # (offboarded - HR-96) "18" = "2BYngjq0XIP6M2L1CItSFHg44s1UFohECVHOKloYOTI="; # Lars Jellema (phone)
   "19" = "MdPb8n+oo9/JjYTg1QodjILQGhlxBvRpPfN5Oui/GFQ="; # jupiter.serokell.io
-  "20" = "b56RX/RoeU5Cq4mQTym5JTnI5jvLZ2tnzvC7WO+Lekc="; # Ivan Gromakovskii 3 (phone)
+  # (lost) "20" = "b56RX/RoeU5Cq4mQTym5JTnI5jvLZ2tnzvC7WO+Lekc="; # Ivan Gromakovskii 3 (phone)
   "21" = "ZkM+PzUSglJ5QLUXLLslLKj2ew/zGQbLzRrRXS6briQ="; # Dmitrii Mukhutdinov 1 (thinkpad)
   "22" = "BqqEzv8Whwn+3zM26gRj2Gf7dgTp/DkxFYfRqPoNZVs="; # Dmitrii Mukhutdinov 2 (macos)
   "23" = "7Y+6DAQh0uQmkxbfASNe/Tz5qoq1FNBY/0lSAPPQTFg="; # Dmitrii Mukhutdinov 3 (ios)
@@ -53,4 +53,5 @@
   "54" = "noNARSZ3ARTol2/UT4fq5UlM5FR8dtcxSuq7E/zWWSA="; # Dmitri Puzyrev (ubuntu)
   "55" = "qW2StgTSXBfmqo9++Bde76UZegv4gKH+wnR9eNmTRhw="; # Andrey Demidenko (tarvos)
   "56" = "sW7lM1ARU3SyDIybTKoBcnUduNBkC4q3MmQFwtVbySw="; # Andrey Demidenko (phone)
+  "57" = "yiA60l8EXtBope5DSpRScCKLWRDesyShPlGXPP3tjD8="; # Ivan Gromakovskii (phone)
 }
