@@ -54,4 +54,5 @@
   "55" = "qW2StgTSXBfmqo9++Bde76UZegv4gKH+wnR9eNmTRhw="; # Andrey Demidenko (tarvos)
   "56" = "sW7lM1ARU3SyDIybTKoBcnUduNBkC4q3MmQFwtVbySw="; # Andrey Demidenko (phone)
   "57" = "yiA60l8EXtBope5DSpRScCKLWRDesyShPlGXPP3tjD8="; # Ivan Gromakovskii (phone)
+  "58" = "H6/j+dLXJgY8ht7NcWRQDvh60XLxxGGlvoFXw1pcMQg="; # Andreev Kirill (linux desktop)
 }
