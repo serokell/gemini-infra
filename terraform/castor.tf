@@ -1,5 +1,5 @@
 resource "aws_instance" "castor" {
-  key_name = "Chris" # eu-west-2
+  key_name = "balsoft" # eu-west-2
 
   # Networking
   availability_zone = module.vpc.azs[2]
