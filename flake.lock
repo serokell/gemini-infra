@@ -15,9 +15,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "serokell",
-        "repo": "deploy-rs",
-        "type": "github"
+        "id": "deploy-rs",
+        "type": "indirect"
       }
     },
     "flake-compat": {
@@ -47,9 +46,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
+        "id": "flake-compat",
+        "type": "indirect"
       }
     },
     "flake-compat_3": {
@@ -110,9 +108,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
+        "id": "flake-utils",
+        "type": "indirect"
       }
     },
     "flake-utils_2": {
@@ -343,9 +340,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "serokell",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "type": "indirect"
       }
     },
     "nixpkgs_4": {
@@ -437,9 +433,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "serokell",
-        "repo": "serokell.nix",
-        "type": "github"
+        "id": "serokell-nix",
+        "type": "indirect"
       }
     },
     "stevenblack-hosts": {
@@ -490,9 +485,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "serokell",
-        "repo": "vault-secrets",
-        "type": "github"
+        "id": "vault-secrets",
+        "type": "indirect"
       }
     }
   },

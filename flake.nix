@@ -1,16 +1,14 @@
 {
   description = "NixOS systems for internal services";
 
+  nixConfig = {
+    flake-registry = "https://github.com/serokell/flake-registry/raw/master/flake-registry.json";
+  };
+
   inputs = {
-    nixpkgs.url = "github:serokell/nixpkgs";
-    serokell-nix.url = "github:serokell/serokell.nix";
     flake-compat = {
-      url = "github:edolstra/flake-compat";
       flake = false;
     };
-    deploy-rs.url = "github:serokell/deploy-rs";
-    flake-utils.url = "github:numtide/flake-utils";
-    vault-secrets.url = "github:serokell/vault-secrets";
     hermetic.url = "github:serokell/hermetic";
     stevenblack-hosts = {
       url = "github:StevenBlack/hosts/3.7.1";
