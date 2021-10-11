@@ -8,7 +8,7 @@ let
 in
 {
   nix.nixPath = options.nix.nixPath.default ++ [ "nixpkgs-overlays=/etc/nix/overlays.nix" ];
-  environment.etc."nix/overlays.nix".source = ./overlays.nix;
+  environment.etc."nix/overlays.nix".source = "${./overlays.nix}";
   nixpkgs.overlays = import ./overlays.nix;
 
   serokell-users = {
