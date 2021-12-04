@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "composition-c4": {
+      "locked": {
+        "lastModified": 1623090606,
+        "narHash": "sha256-iQRhXFZEScUHPLwR9wCPnGpNlYnVGxIe3+Zopr1ETi8=",
+        "owner": "fossar",
+        "repo": "composition-c4",
+        "rev": "9232e2b8e54adb310f476f5fe66f4b6fb5996487",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fossar",
+        "repo": "composition-c4",
+        "type": "github"
+      }
+    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -401,6 +416,7 @@
     },
     "root": {
       "inputs": {
+        "composition-c4": "composition-c4",
         "deploy-rs": "deploy-rs",
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils",
