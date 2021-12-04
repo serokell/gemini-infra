@@ -14,6 +14,7 @@
       url = "github:StevenBlack/hosts/3.7.1";
       flake = false;
     };
+    composition-c4.url = "github:fossar/composition-c4";
   };
 
   outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
