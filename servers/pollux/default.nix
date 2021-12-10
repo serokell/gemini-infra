@@ -10,9 +10,8 @@
 
   nixpkgs.overlays = [ inputs.composition-c4.overlay ];
 
-  services.nginx.virtualHosts.suitecrm =
-    { serverName =
-        with config.networking; "${hostName}.${domain}";
+  services.nginx.virtualHosts.suitecrm = {
+      serverName = "suitecrm.serokell.team";
       default = true;
 
       enableACME = true;

@@ -112,6 +112,7 @@ in
       enable = true;
       virtualHosts.suitecrm = {
         locations."/" = {
+          index = "index.php";
           root = "/var/www/suitecrm";
         };
 
