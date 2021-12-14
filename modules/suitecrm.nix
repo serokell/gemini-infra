@@ -16,6 +16,8 @@ in
 
     suitecrmPackage = mkOption {
       type = with types; package;
+      defaultText = "pkgs.suitecrm";
+      default = pkgs.suitecrm;
       description = ''
         A package of SuiteCRM transformed with <literal>composer install --no-scripts</literal>.
         <literal>--no-scripts</literal> is neccessary because a post-install tries to delete some

@@ -10,8 +10,6 @@
     user = "mtg";
   };
 
-  nixpkgs.overlays = [ inputs.self.overlay ];
-
   services.mtg = {
     enable = true;
     secretFile = "${config.vault-secrets.secrets.mtg}/secret";

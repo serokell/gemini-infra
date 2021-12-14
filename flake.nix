@@ -18,17 +18,23 @@
   };
 
   outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
-    , ... }@inputs:
+    , composition-c4, ... }@inputs:
     let
       inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
       inherit (builtins) readDir mapAttrs;
+      allOverlays = [
+        serokell-nix.overlay
+        vault-secrets.overlay
+        composition-c4.overlay
+        self.overlay
+      ];
       system = "x86_64-linux";
       servers = mapAttrs (path: _: import (./servers + "/${path}"))
         (filterAttrs (_: t: t == "directory") (readDir ./servers));
       mkSystem = config:
         nixosSystem {
           inherit system;
-          modules = [ config ./common.nix ];
+          modules = [ config ./common.nix { nixpkgs.overlays = allOverlays; } ];
           specialArgs = {
             inputs = inputs;
             libPath = toString ./lib;
@@ -58,13 +64,10 @@
       };
     } // flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
-        pkgs = serokell-nix.lib.pkgsWith nixpkgs.legacyPackages.${system} [
-          serokell-nix.overlay
-          vault-secrets.overlay
-        ];
+        pkgs = serokell-nix.lib.pkgsWith nixpkgs.legacyPackages.${system} allOverlays;
       in {
 
-        packages = { inherit (pkgs.extend self.overlay) mtg; };
+        packages = { inherit (pkgs.extend self.overlay) mtg suitecrm; };
 
         devShell = pkgs.mkShell {
           VAULT_ADDR = "https://vault.serokell.org:8200";
