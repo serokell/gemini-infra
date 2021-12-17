@@ -157,6 +157,7 @@ in
             session
             ldap
             pdo
+            filter
           ]);
 
         settings = {
