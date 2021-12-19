@@ -36,7 +36,7 @@
   "37" = "NwZ6bfanB8RxPzsiPvCRId6N8JJLiyXTl6ZB/bfI80I="; # Ilya Peresadin (MacOS)
   # (offboarded) "38" = "SSayDwgxJv6LFiMw72iPdKLT5PHTrRwx1ODk8Db9wxE="; # Paul Tsupikoff (phone)
   "39" = "2E/S/T+n53bbP0CV04uayrs6POZ9qZLrtl4Am26naVI="; # Rinat Stryungis (nixOS)
-  "40" = "oIZ4XLs9E/W8UzrTs+byJRBbgs5/HWQtNvP+et27o0w="; # Zhenya Vinogradov
+  # (offboarded) "40" = "oIZ4XLs9E/W8UzrTs+byJRBbgs5/HWQtNvP+et27o0w="; # Zhenya Vinogradov
   # (suspicious traffic) "41" = "uUZiefGUqrMWIFYhAd0oJRVCj3wQEoiYhEVr7ACXYSw="; # Anton Myasnikov (linux)
   "42" = "6wXyIaig7Syeaj9+fW3J9IxRAYm1WxJKzuA9wEdwGGc="; # Roman Melnikov
   "43" = "cFleIhfMaB5X+xqxNYrOXgRLqortiVgGzxVo4zkDwEY="; # Kirill Kuvshinov
