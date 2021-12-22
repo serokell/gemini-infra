@@ -79,6 +79,7 @@
             (pkgs.vault-push-approles self)
             (terraformFor pkgs)
             pkgs.nixUnstable
+            pkgs.aws
           ];
         };
 
