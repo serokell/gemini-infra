@@ -130,6 +130,29 @@ resource "aws_security_group" "http" {
   }
 }
 
+# Allow Mumble traffic
+resource "aws_security_group" "mumble" {
+  name = "mumble"
+  description = "Allow inbound and outbound traffic of Mumble(Murmur) server"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port = 64738
+    to_port = 64738
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    from_port = 64738
+    to_port = 64738
+    protocol = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
+
 # Allow mtg traffic
 resource "aws_security_group" "mtg" {
   name = "mtg"
