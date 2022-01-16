@@ -38,7 +38,7 @@
   "39" = "2E/S/T+n53bbP0CV04uayrs6POZ9qZLrtl4Am26naVI="; # Rinat Stryungis (nixOS)
   # (offboarded) "40" = "oIZ4XLs9E/W8UzrTs+byJRBbgs5/HWQtNvP+et27o0w="; # Zhenya Vinogradov
   # (suspicious traffic) "41" = "uUZiefGUqrMWIFYhAd0oJRVCj3wQEoiYhEVr7ACXYSw="; # Anton Myasnikov (linux)
-  "42" = "6wXyIaig7Syeaj9+fW3J9IxRAYm1WxJKzuA9wEdwGGc="; # Roman Melnikov
+  # unused "42" = "6wXyIaig7Syeaj9+fW3J9IxRAYm1WxJKzuA9wEdwGGc="; # Roman Melnikov
   "43" = "cFleIhfMaB5X+xqxNYrOXgRLqortiVgGzxVo4zkDwEY="; # Kirill Kuvshinov
   "44" = "ecK/Hr5OhCuGwPDGnNeSFdaPJPAGOJ3gfyK3jeFazSY="; # Grigory Pevnev
   "45" = "e9HScVFEIG2HchvirXXDLg+wHjvcbxx9rp5Q/f8LewU="; # Aleksandr Pakulev
@@ -55,4 +55,5 @@
   "56" = "sW7lM1ARU3SyDIybTKoBcnUduNBkC4q3MmQFwtVbySw="; # Andrey Demidenko (phone)
   "57" = "yiA60l8EXtBope5DSpRScCKLWRDesyShPlGXPP3tjD8="; # Ivan Gromakovskii (phone)
   "58" = "H6/j+dLXJgY8ht7NcWRQDvh60XLxxGGlvoFXw1pcMQg="; # Andreev Kirill (linux desktop)
+  "59" = "VCaUxUR3D81o2SkKHfER3pbMkbo/LP5FzxXY6A3lYFM="; # Roman Melnikov (linux laptop)
 }
