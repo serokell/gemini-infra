@@ -185,7 +185,7 @@ resource "aws_security_group" "wireguard" {
 
 # Network resources
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+  source = "./.terraform_nix/modules/vpc"
 
   name = "gemini-vpc"
   cidr = "10.0.0.0/16"

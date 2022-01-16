@@ -1,5 +1,6 @@
 .envrc
 .terraform/
+.terraform_nix/
 .terraform.lock.hcl
 result*
 .tmp

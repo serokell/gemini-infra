@@ -42,6 +42,11 @@
         };
 
       terraformFor = pkgs: pkgs.terraform.withPlugins (p: with p; [ aws vault hcloud ]);
+
+      vpcModule = builtins.fetchGit {
+        url = "git+ssh://git@github.com/terraform-aws-modules/terraform-aws-vpc.git";
+        rev = "96d22b8c39a918d163657c31adfa60b1f3f9e4b5";
+      };
     in {
       nixosConfigurations = mapAttrs (const mkSystem) servers;
 
@@ -72,6 +77,11 @@
         devShell = pkgs.mkShell {
           VAULT_ADDR = "https://vault.serokell.org:8200";
           SSH_OPTS = "${builtins.concatStringsSep " " self.deploy.sshOpts}";
+          shellHook = ''
+            mkdir -p $PWD/terraform/.terraform_nix/modules/
+            rm -rf $PWD/terraform/.terraform_nix/modules/vpc
+            ln -s ${vpcModule} $PWD/terraform/.terraform_nix/modules/vpc
+          '';
           buildInputs = [
             deploy-rs.packages.${system}.deploy-rs
             pkgs.vault
@@ -85,16 +95,16 @@
 
         checks = deploy-rs.lib.${system}.deployChecks self.deploy // {
           trailing-whitespace = pkgs.build.checkTrailingWhitespace ./.;
-          # FIXME VPC provider is not packaged
-          # terraform = pkgs.runCommand "terraform-check" {
-          #   src = ./terraform;
-          #   buildInputs = [ (terraformFor pkgs) ];
-          # } ''
-          #   cp -r $src ./terraform
-          #   terraform init -backend=false terraform
-          #   terraform validate terraform
-          #   touch $out
-          # '';
+          terraform = pkgs.runCommand "terraform-check" {
+            src = ./terraform;
+            buildInputs = [ (terraformFor pkgs) ];
+          } ''
+            mkdir -p .terraform_nix/modules/
+            ln -s ${vpcModule} .terraform_nix/modules/vpc
+            terraform init -backend=false
+            terraform validate
+            touch $out
+          '';
         };
       });
 }
