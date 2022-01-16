@@ -56,4 +56,5 @@
   "57" = "yiA60l8EXtBope5DSpRScCKLWRDesyShPlGXPP3tjD8="; # Ivan Gromakovskii (phone)
   "58" = "H6/j+dLXJgY8ht7NcWRQDvh60XLxxGGlvoFXw1pcMQg="; # Andreev Kirill (linux desktop)
   "59" = "VCaUxUR3D81o2SkKHfER3pbMkbo/LP5FzxXY6A3lYFM="; # Roman Melnikov (linux laptop)
+  "60" = "MikaZY25dY7DSj4NIRr38thFlPAEDZ0BGEXGb+P8Pjk="; # Mika Logan (NixOS laptop)
 }
