@@ -58,4 +58,5 @@
   "59" = "VCaUxUR3D81o2SkKHfER3pbMkbo/LP5FzxXY6A3lYFM="; # Roman Melnikov (linux laptop)
   "60" = "MikaZY25dY7DSj4NIRr38thFlPAEDZ0BGEXGb+P8Pjk="; # Mika Logan (NixOS laptop)
   "61" = "88+XZWfgi0QRc19dUPjgZi/1BzsbRrxVOBOku1OHqUc="; # HQ (mac mini M1)
+  "62" = "Cab+tyDPjWs9ewdbJ0bZysO5Ra4UuEC0OTJPNn84sSE="; # Vladimir Serov (yuna)
 }
