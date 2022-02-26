@@ -22,7 +22,7 @@
   "22" = "BqqEzv8Whwn+3zM26gRj2Gf7dgTp/DkxFYfRqPoNZVs="; # Dmitrii Mukhutdinov 2 (macos)
   "23" = "7Y+6DAQh0uQmkxbfASNe/Tz5qoq1FNBY/0lSAPPQTFg="; # Dmitrii Mukhutdinov 3 (ios)
   # (offboarded) "24" = "Z2ktaCa9MySgC1hUlSg44Jx7iH/MWUC+1Ref2hJGC24="; # Konstantin Andriotis (ios)
-  "26" = "zXvj+Ui21bkyejHbPlUA6VFqpI2uhhYVyQliC3bE6w8="; # Vladislav Zavialov (Mac)
+  "26" = "wUpbbLu5PF5Q3j5OpAFCkuzXPqQRgLgiPyIHHPjkwCY="; # Vladislav Zavialov (Mac)
   # (offboarded) "27" = "57Df3FY2MQKQ0sMS/67r1L9k0gBhOQ4wqCJxRpuWNkE="; # Vasiliy Kevroletin 1 (linux laptop)
   # (offboarded) "28" = "PUkgnTQq8beemhxIb/ZaPHD8I3qnpP28W5kxVqmoQSw="; # Vasiliy Kevroletin 2 (android phone)
   # (offboarded) "29" = "cY5XDjkv2UPxIds4RGEgiL0ZNTTx0u5h/097J6WEqzA="; # Dmitry Nikulin 1 (natrium)
