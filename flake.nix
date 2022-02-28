@@ -76,7 +76,7 @@
           mkdir -p $PWD/terraform/.terraform_nix/modules/
           rm -rf $PWD/terraform/.terraform_nix/modules/vpc
           ln -s ${vpcModule} $PWD/terraform/.terraform_nix/modules/vpc
-          ${terraform}/bin/terraform $@
+          ${terraform}/bin/terraform "$@"
         '';
       in {
 
@@ -85,8 +85,6 @@
         devShell = pkgs.mkShell {
           VAULT_ADDR = "https://vault.serokell.org:8200";
           SSH_OPTS = "${builtins.concatStringsSep " " self.deploy.sshOpts}";
-          shellHook = ''
-          '';
           buildInputs = [
             deploy-rs.packages.${system}.deploy-rs
             pkgs.vault
