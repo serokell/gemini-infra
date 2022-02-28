@@ -15,6 +15,10 @@
       flake = false;
     };
     composition-c4.url = "github:fossar/composition-c4";
+    subspace = {
+      url = "github:serokell/subspace";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
