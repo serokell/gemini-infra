@@ -69,6 +69,11 @@ resource "hcloud_ssh_key" "zhenya" {
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVESCckOB+2NoojRR+rMl2N4OTf7PQR2BvcxF7cMeRtpSDnMQwbitJNCm0tNygUa8Sn5obaS0HSTfvefIPaDOhgDwi/hGznHiCI3+cAesi/GXXq5p+ota/Ab2oQOFsAquy3sGxNaMhVwU2FU8uyDmiCEbS8kKWAW/YXVqRTPsbkkNBJIwetvzXyrFrYZeCdShZmcPtOGHLpUByKhXkQHXpZ86Bbu9NH/0GsFamADlRaoQQa1+oTWPCWvwsctsAUcHw4/jpeHQffCFATYYS57xYXKkjMZJHypDyjJB9U40bX/HZYaTMP4fDlXeEO/OU2YkAJdt0NBylcE1WzFrOKRNBCcgfgHBzsD3rxMvVNPAl/JXTiEBpXZoza8p+gmQRMMe9SDQLz9pRN7paRsAi1qaQnFV1DbCBPrY2OezJujIuRKc8t0D3nEgg5rcYi2fcFkJscwAsvspTBnK9LCC5ojqa0O5BGTYwlxp2cUkFbWyM2oaRqcQo3ypPaJBybo/TF2FqqHlWNlckwOPPTGngThT6kkFEF+kqMUlUdokiWcpl2K7psfl5RdYGIFfey74NiqoSZ9gyta2WBkY7J41YrsQh20vtGhWWYl/+pDo3cggqmP0fEmD5CaPZXimvHjOjfcxGMooPpkOl3G3I0eQSpvlPpLZHEhh5fThFIAF2RxN/IQ== zhenyavinogradov@gmail.com"
 }
 
+resource "hcloud_ssh_key" "notgne2" {
+  name = "notgne2"
+  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIBwL8/TuE5GT1708sR3rVc1C1g2DmoSf35kjXKKLcr"
+}
+
 # Allow ALL egress traffic
 resource "aws_security_group" "egress_all" {
   name = "egress_all"
