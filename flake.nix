@@ -42,6 +42,11 @@
         };
 
       terraformFor = pkgs: pkgs.terraform.withPlugins (p: with p; [ aws vault hcloud ]);
+
+      vpcModule = builtins.fetchGit {
+        url = "git+ssh://git@github.com/terraform-aws-modules/terraform-aws-vpc.git";
+        rev = "96d22b8c39a918d163657c31adfa60b1f3f9e4b5";
+      };
     in {
       nixosConfigurations = mapAttrs (const mkSystem) servers;
 
@@ -65,6 +70,14 @@
     } // flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         pkgs = serokell-nix.lib.pkgsWith nixpkgs.legacyPackages.${system} allOverlays;
+        terraform = terraformFor pkgs;
+        # Terraform doesn't expose any other binaries, so that works
+        terraform-pinned = pkgs.writeScriptBin "terraform" ''
+          mkdir -p $PWD/terraform/.terraform_nix/modules/
+          rm -rf $PWD/terraform/.terraform_nix/modules/vpc
+          ln -s ${vpcModule} $PWD/terraform/.terraform_nix/modules/vpc
+          ${terraform}/bin/terraform "$@"
+        '';
       in {
 
         packages = { inherit (pkgs.extend self.overlay) mtg suitecrm; };
@@ -77,7 +90,7 @@
             pkgs.vault
             (pkgs.vault-push-approle-envs self)
             (pkgs.vault-push-approles self)
-            (terraformFor pkgs)
+            terraform-pinned
             pkgs.nixUnstable
             pkgs.aws
           ];
@@ -85,16 +98,14 @@
 
         checks = deploy-rs.lib.${system}.deployChecks self.deploy // {
           trailing-whitespace = pkgs.build.checkTrailingWhitespace ./.;
-          # FIXME VPC provider is not packaged
-          # terraform = pkgs.runCommand "terraform-check" {
-          #   src = ./terraform;
-          #   buildInputs = [ (terraformFor pkgs) ];
-          # } ''
-          #   cp -r $src ./terraform
-          #   terraform init -backend=false terraform
-          #   terraform validate terraform
-          #   touch $out
-          # '';
+          terraform = pkgs.runCommand "terraform-check" {
+            src = ./terraform;
+            buildInputs = [ terraform ];
+          } ''
+            terraform init -backend=false
+            terraform validate
+            touch $out
+          '';
         };
       });
 }
