@@ -70,6 +70,14 @@
     } // flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         pkgs = serokell-nix.lib.pkgsWith nixpkgs.legacyPackages.${system} allOverlays;
+        terraform = terraformFor pkgs;
+        # Terraform doesn't expose any other binaries, so that works
+        terraform-pinned = pkgs.writeScriptBin "terraform" ''
+          mkdir -p $PWD/terraform/.terraform_nix/modules/
+          rm -rf $PWD/terraform/.terraform_nix/modules/vpc
+          ln -s ${vpcModule} $PWD/terraform/.terraform_nix/modules/vpc
+          ${terraform}/bin/terraform $@
+        '';
       in {
 
         packages = { inherit (pkgs.extend self.overlay) mtg suitecrm; };
@@ -78,16 +86,13 @@
           VAULT_ADDR = "https://vault.serokell.org:8200";
           SSH_OPTS = "${builtins.concatStringsSep " " self.deploy.sshOpts}";
           shellHook = ''
-            mkdir -p $PWD/terraform/.terraform_nix/modules/
-            rm -rf $PWD/terraform/.terraform_nix/modules/vpc
-            ln -s ${vpcModule} $PWD/terraform/.terraform_nix/modules/vpc
           '';
           buildInputs = [
             deploy-rs.packages.${system}.deploy-rs
             pkgs.vault
             (pkgs.vault-push-approle-envs self)
             (pkgs.vault-push-approles self)
-            (terraformFor pkgs)
+            terraform-pinned
             pkgs.nixUnstable
             pkgs.aws
           ];
@@ -97,10 +102,8 @@
           trailing-whitespace = pkgs.build.checkTrailingWhitespace ./.;
           terraform = pkgs.runCommand "terraform-check" {
             src = ./terraform;
-            buildInputs = [ (terraformFor pkgs) ];
+            buildInputs = [ terraform ];
           } ''
-            mkdir -p .terraform_nix/modules/
-            ln -s ${vpcModule} .terraform_nix/modules/vpc
             terraform init -backend=false
             terraform validate
             touch $out
