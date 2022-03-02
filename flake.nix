@@ -83,7 +83,6 @@
           ${terraform}/bin/terraform "$@"
         '';
       in {
-
         packages = { inherit (pkgs.extend self.overlay) mtg suitecrm; };
 
         devShell = pkgs.mkShell {
