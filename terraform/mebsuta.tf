@@ -43,3 +43,19 @@ resource "aws_route53_record" "vpn_serokell_net_ipv6" {
   ttl     = "60"
   records = [hcloud_server.mebsuta.ipv6_address]
 }
+
+resource "aws_route53_record" "dtunns_serokell_net" {
+  zone_id = data.aws_route53_zone.serokell_net.zone_id
+  name    = "dtunns.serokell.net"
+  type    = "A"
+  ttl     = "60"
+  records = [hcloud_server.mebsuta.ipv4_address]
+}
+
+resource "aws_route53_record" "dtun_serokell_net" {
+  zone_id = data.aws_route53_zone.serokell_net.zone_id
+  name    = "dtun.serokell.net"
+  type    = "NS"
+  ttl     = "60"
+  records = [aws_route53_record.dtunns_serokell_net.name]
+}

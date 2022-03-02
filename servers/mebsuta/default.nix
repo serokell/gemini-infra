@@ -31,6 +31,19 @@ in
     53222 # wireguard
   ];
 
+  vault-secrets.secrets.iodined = {
+    user = "iodined";
+    group = "iodined";
+  };
+
+  services.iodine.server = {
+    enable = true;
+    domain = "dtun.serokell.net";
+    passwordFile = "${vs.iodined}/password";
+    ip = "10.53.0.1/16";
+    extraConfig = "-c";
+  };
+
   services.subspace = {
     enable = true;
     httpInsecure = false;
