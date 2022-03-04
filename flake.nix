@@ -6,6 +6,7 @@
   };
 
   inputs = {
+    nixpkgs-new.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-compat = {
       flake = false;
     };
@@ -21,10 +22,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
+  outputs = { self, nixpkgs, nixpkgs-new, serokell-nix, deploy-rs, flake-utils, vault-secrets
     , composition-c4, ... }@inputs:
     let
-      inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
+      inherit (nixpkgs.lib) filterAttrs const recursiveUpdate;
       inherit (builtins) readDir mapAttrs;
       allOverlays = [
         serokell-nix.overlay
@@ -35,8 +36,8 @@
       system = "x86_64-linux";
       servers = mapAttrs (path: _: import (./servers + "/${path}"))
         (filterAttrs (_: t: t == "directory") (readDir ./servers));
-      mkSystem = config:
-        nixosSystem {
+      mkSystem = nixpkgs: config:
+        nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ config ./common.nix { nixpkgs.overlays = allOverlays; } ];
           specialArgs = {
@@ -52,7 +53,9 @@
         rev = "96d22b8c39a918d163657c31adfa60b1f3f9e4b5";
       };
     in {
-      nixosConfigurations = mapAttrs (const mkSystem) servers;
+      nixosConfigurations = mapAttrs (const (mkSystem nixpkgs)) servers // {
+        propus = mkSystem nixpkgs-new servers.propus;
+      };
 
       nixosModules = import ./modules;
 
