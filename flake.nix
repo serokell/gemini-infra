@@ -77,9 +77,15 @@
         terraform = terraformFor pkgs;
         # Terraform doesn't expose any other binaries, so that works
         terraform-pinned = pkgs.writeScriptBin "terraform" ''
-          mkdir -p $PWD/terraform/.terraform_nix/modules/
-          rm -rf $PWD/terraform/.terraform_nix/modules/vpc
-          ln -s ${vpcModule} $PWD/terraform/.terraform_nix/modules/vpc
+          terraformNixDir=".terraform_nix/modules"
+          if [ -d "terraform" ]; then
+            terraformNixDir="terraform/$terraformNixDir"
+          fi
+
+          mkdir -p "$terraformNixDir"
+          rm -rf "$terraformNixDir/vpc"
+          ln -s ${vpcModule} "$terraformNixDir/vpc"
+
           ${terraform}/bin/terraform "$@"
         '';
       in {
@@ -101,12 +107,10 @@
 
         checks = deploy-rs.lib.${system}.deployChecks self.deploy // {
           trailing-whitespace = pkgs.build.checkTrailingWhitespace ./.;
-          terraform = pkgs.runCommand "terraform-check" {
-            src = ./terraform;
-            buildInputs = [ terraform ];
-          } ''
-            terraform init -backend=false
-            terraform validate
+          terraform = pkgs.runCommand "terraform-check" {  } ''
+            cp -r ${./terraform}/. .
+            ${terraform-pinned}/bin/terraform init -backend=false
+            ${terraform-pinned}/bin/terraform validate
             touch $out
           '';
         };
