@@ -16,7 +16,10 @@
     isSystemUser = true;
     useDefaultShell = true;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOA+/SMYgdibz1vkEKl2Hyi5epcZ91Q+vjWUoLiATj4R edna" ];
+    group = "deploy";
   };
+
+  users.groups.deploy = {};
 
   # Allow the deployment user to restart CD services
   security.sudo.extraRules =
