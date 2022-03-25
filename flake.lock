@@ -156,6 +156,21 @@
     },
     "flake-utils_4": {
       "locked": {
+        "lastModified": 1644229661,
+        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_5": {
+      "locked": {
         "lastModified": 1631561581,
         "narHash": "sha256-3VQMV5zvxaVLvqqUrNz3iJelLw30mIVSfZmAaauM3dA=",
         "owner": "numtide",
@@ -339,11 +354,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1632495107,
-        "narHash": "sha256-4NGE56r+FJGBaCYu3CTH4O83Ys4TrtnEPXrvdwg1TDs=",
+        "lastModified": 1647129966,
+        "narHash": "sha256-x64/UUHi3+SW2jPzTiMSo7ZOV1vEKWUaFKwu5TxA+g0=",
         "owner": "serokell",
         "repo": "nixpkgs",
-        "rev": "be220b2dc47092c1e739bf6aaf630f29e71fe1c4",
+        "rev": "d08797bb2447495d21d92ca5c193e69e707aa37d",
         "type": "github"
       },
       "original": {
@@ -463,16 +478,17 @@
     },
     "subspace": {
       "inputs": {
+        "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1646124360,
-        "narHash": "sha256-SA91nPKlS8QGa+h49B12qwfTqWwhg6uyrygb/B4odEQ=",
+        "lastModified": 1646177515,
+        "narHash": "sha256-2TqkEW1soPoz/q9sKZbtgMa6+fvDSJPIQ6/pdDNoAkE=",
         "owner": "serokell",
         "repo": "subspace",
-        "rev": "5a94bc9dd502e7477cc10640f7a97a981e4b8875",
+        "rev": "0c2b67bce87427d3918d31672d6b809855e48ec6",
         "type": "github"
       },
       "original": {
@@ -499,7 +515,7 @@
     "vault-secrets": {
       "inputs": {
         "flake-compat": "flake-compat_5",
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_5",
         "nix": "nix_2",
         "nixpkgs": "nixpkgs_7"
       },
