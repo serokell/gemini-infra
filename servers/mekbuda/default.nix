@@ -22,7 +22,10 @@
 
   users.users.mtg = {
     isSystemUser = true;
+    group = "mtg";
   };
+
+  users.groups.mtg = {};
 
   networking.hostName = "mekbuda";
   wireguard-ip-address = "172.21.0.13";

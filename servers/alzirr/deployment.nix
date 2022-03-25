@@ -63,7 +63,11 @@ in
     useDefaultShell = true;
 
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA1MvqWKMAejgaBfm0mXqwRK7QZ6NNOzCGj9aX+tiiow" ];
+
+    group = "deploy";
   };
+
+  users.groups.deploy = {};
 
   security.sudo.extraRules = [{
     users = [ "deploy" ];
@@ -146,4 +150,7 @@ in
     # all '.serokell.io' subdomains, use a different name for tt
     cookie.name = "_oauth2_proxy_tt";
   };
+
+  users.users.oauth2_proxy.group = "oauth2_proxy";
+  users.groups.oauth2_proxy = {};
 }

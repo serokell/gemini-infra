@@ -49,7 +49,7 @@
 
       vpcModule = builtins.fetchGit {
         url = "git+ssh://git@github.com/terraform-aws-modules/terraform-aws-vpc.git";
-        rev = "96d22b8c39a918d163657c31adfa60b1f3f9e4b5";
+        rev = "e02118633f268ff1f86021a8fa9f3afcd1c37d85";
       };
     in {
       nixosConfigurations = mapAttrs (const mkSystem) servers;
