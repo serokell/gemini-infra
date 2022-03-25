@@ -49,8 +49,6 @@ in
     httpInsecure = false;
     httpHost = "vpn.serokell.net";
     letsencrypt = false;
-    masqueradeInterface = "eth0";
-    disableDns = true;
   };
 
   services.nginx = {
