@@ -150,4 +150,7 @@ in
     # all '.serokell.io' subdomains, use a different name for tt
     cookie.name = "_oauth2_proxy_tt";
   };
+
+  users.users.oauth2_proxy.group = "oauth2_proxy";
+  users.groups.oauth2_proxy = {};
 }
