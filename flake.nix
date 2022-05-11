@@ -100,7 +100,7 @@
             (pkgs.vault-push-approle-envs self)
             (pkgs.vault-push-approles self)
             terraform-pinned
-            pkgs.nixUnstable
+            pkgs.nix
             pkgs.aws
           ];
         };
