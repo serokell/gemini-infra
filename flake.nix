@@ -6,9 +6,7 @@
   };
 
   inputs = {
-    flake-compat = {
-      flake = false;
-    };
+    flake-compat.flake = false;
     hermetic.url = "github:serokell/hermetic";
     stevenblack-hosts = {
       url = "github:StevenBlack/hosts/3.7.1";
@@ -26,15 +24,19 @@
     let
       inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
       inherit (builtins) readDir mapAttrs;
+
       allOverlays = [
         serokell-nix.overlay
         vault-secrets.overlay
         composition-c4.overlay
         self.overlay
       ];
-      system = "x86_64-linux";
+
       servers = mapAttrs (path: _: import (./servers + "/${path}"))
         (filterAttrs (_: t: t == "directory") (readDir ./servers));
+
+      system = "x86_64-linux";
+
       mkSystem = config:
         nixosSystem {
           inherit system;
@@ -44,13 +46,6 @@
             libPath = toString ./lib;
           };
         };
-
-      terraformFor = pkgs: pkgs.terraform.withPlugins (p: with p; [ aws vault hcloud ]);
-
-      vpcModule = builtins.fetchGit {
-        url = "git+ssh://git@github.com/terraform-aws-modules/terraform-aws-vpc.git";
-        rev = "e02118633f268ff1f86021a8fa9f3afcd1c37d85";
-      };
     in {
       nixosConfigurations = mapAttrs (const mkSystem) servers;
 
@@ -71,10 +66,18 @@
             deploy-rs.lib.${system}.activate.nixos nixosConfig;
         }) self.nixosConfigurations;
       };
-    } // flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
+
+      pipelineFile = serokell-nix.lib.pipeline.mkPipelineFile self;
+    } // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = serokell-nix.lib.pkgsWith nixpkgs.legacyPackages.${system} allOverlays;
-        terraform = terraformFor pkgs;
+
+        vpcModule = builtins.fetchGit {
+          url = "git+ssh://git@github.com/terraform-aws-modules/terraform-aws-vpc.git";
+          rev = "e02118633f268ff1f86021a8fa9f3afcd1c37d85";
+        };
+
+        terraform = pkgs.terraform.withPlugins (p: with p; [ aws vault hcloud ]);
         # Terraform doesn't expose any other binaries, so that works
         terraform-pinned = pkgs.writeScriptBin "terraform" ''
           terraformNixDir=".terraform_nix/modules"
@@ -89,9 +92,10 @@
           ${terraform}/bin/terraform "$@"
         '';
       in {
-        packages = { inherit (pkgs.extend self.overlay) mtg suitecrm; };
+        packages = { inherit (pkgs.extend self.overlay) mtg suitecrm nix; };
 
-        devShell = pkgs.mkShell {
+        devShell = self.devShells.${system}.default;
+        devShells.default = pkgs.mkShell {
           VAULT_ADDR = "https://vault.serokell.org:8200";
           SSH_OPTS = "${builtins.concatStringsSep " " self.deploy.sshOpts}";
           buildInputs = [
