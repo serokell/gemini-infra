@@ -17,6 +17,9 @@
       url = "github:serokell/subspace";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ligo-webide.url = "github:serokell/ligo-webide";
+
   };
 
   outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
@@ -104,7 +107,7 @@
             (pkgs.vault-push-approle-envs self)
             (pkgs.vault-push-approles self)
             terraform-pinned
-            pkgs.nixUnstable
+            nixpkgs.legacyPackages.${system}.nixUnstable
             pkgs.aws
           ];
         };
