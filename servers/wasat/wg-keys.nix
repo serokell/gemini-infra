@@ -60,4 +60,5 @@
   "61" = "88+XZWfgi0QRc19dUPjgZi/1BzsbRrxVOBOku1OHqUc="; # HQ (mac mini M1)
   "62" = "Cab+tyDPjWs9ewdbJ0bZysO5Ra4UuEC0OTJPNn84sSE="; # Vladimir Serov (yuna)
   "63" = "mqu2BsyyaKPej+Q3nYLurDiCOkuFUi7b46sTnLUhQQI="; # Leonid Vasilev (linux laptop)
+  "64" = "5vAvQjwG6FB/QtaPzsvSawOmsqq3m6uPHi6JUmlSnU4="; # Pasquale Pinto (Raspberry Pi 4B)
 }
