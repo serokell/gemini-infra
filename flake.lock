@@ -505,11 +505,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1656517413,
-        "narHash": "sha256-gDrV2/hvd0420p6lspnldWkDFNwqqIm07fdkCHrL0vA=",
+        "lastModified": 1657571193,
+        "narHash": "sha256-BRy/YN1JkOZ/clSwR9V6EbEABqG647jWxo+Ys05bEvM=",
         "owner": "serokell",
         "repo": "ligo-webide",
-        "rev": "09b68697518f896afc290468a94b9c3d5eb3c0be",
+        "rev": "14a13b5f8409f53af95e225013c6ed11e0fd4750",
         "type": "github"
       },
       "original": {
