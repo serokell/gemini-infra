@@ -56,5 +56,5 @@ with lib;
   systemd.services.murmur.serviceConfig.EnvironmentFile = "${config.vault-secrets.secrets.murmur}/environment";
 
   networking.hostName = "tejat-prior";
-  wireguard-ip-address = "172.21.0.34";
+  wireguard-ip-address = "172.21.0.37";
 }
