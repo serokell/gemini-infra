@@ -61,4 +61,5 @@
   "62" = "Cab+tyDPjWs9ewdbJ0bZysO5Ra4UuEC0OTJPNn84sSE="; # Vladimir Serov (yuna)
   "63" = "mqu2BsyyaKPej+Q3nYLurDiCOkuFUi7b46sTnLUhQQI="; # Leonid Vasilev (linux laptop)
   "64" = "5vAvQjwG6FB/QtaPzsvSawOmsqq3m6uPHi6JUmlSnU4="; # Pasquale Pinto (Raspberry Pi 4B)
+  "65" = "0mC/xGiV9rl4l4NAPx/GhVvzF9l+CNK+uBEpAJLe8Qc="; # Dmitriy Mozhevitin (linux laptop)
 }
