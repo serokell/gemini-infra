@@ -10,7 +10,7 @@ in
 
   serokell-users = {
     wheelUsers = [ "sweater" ];
-    regularUsers = [ "slowpnir" "diogo" ];
+    regularUsers = [ "diogo" ];
   };
 
   environment.systemPackages = with pkgs; [
