@@ -6,6 +6,7 @@
   };
 
   inputs = {
+    nix.url = "github:nixos/nix/2.10-maintenance";
     flake-compat.flake = false;
     hermetic.url = "github:serokell/hermetic";
     stevenblack-hosts = {
@@ -18,11 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ligo-webide.url = "github:serokell/ligo-webide";
+    ligo-webide.url = "git+https://gitlab.com/serokell/ligo/ligo?dir=tools/webide-new";
 
   };
 
-  outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
+  outputs = { self, nix, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
     , composition-c4, ... }@inputs:
     let
       inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
@@ -107,7 +108,7 @@
             (pkgs.vault-push-approle-envs self)
             (pkgs.vault-push-approles self)
             terraform-pinned
-            nixpkgs.legacyPackages.${system}.nixUnstable
+            nix.packages.${system}.nix
             pkgs.aws
           ];
         };
