@@ -10,6 +10,13 @@ with lib;
       allowedUDPPorts = [ config.services.murmur.port ];
     };
 
+  vault-secrets.secrets.backups = { user = "restic"; };
+  services.restic.backups.murmur = {
+    environmentFile = "${config.vault-secrets.secrets.backups}/environment";
+    repository = "b2:srk-bkp:test-murmur";
+    initialize = true;
+    paths = [ "/var/lib/murmur" ];
+  };
 
   containers.ligo-webide-thing = {
     autoStart = true;
