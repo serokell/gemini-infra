@@ -26,6 +26,9 @@ with lib;
     hostAddress = "192.168.100.10";
     localAddress = "192.168.100.11";
   };
+  networking.nat.enable = true;
+  networking.nat.internalInterfaces = ["ve-+"];
+  networking.nat.externalInterface = "ens5";
 
   services.nginx = {
     enable = true;
