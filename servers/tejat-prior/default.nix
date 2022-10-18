@@ -17,6 +17,7 @@ with lib;
     isSystemUser = true;
     useDefaultShell = true;
     group = "deploy";
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBuEKUhfJWZXUqgE2hN+aekbRj5yU8Q0kT4FjducocP webide" ];
   };
 
   security.sudo.extraRules = [
