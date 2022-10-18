@@ -35,13 +35,16 @@ All necessary programs and dependencies are provided by Nix in `nix-shell` or `n
 
 ## Servers
 
-| Name      | Function         | IP            |
-| :-------: | :--------------: | :-----------: |
-| Alhena    | Hermetic         |               |
-| Alzirr    | Swampwalk/TT     | 135.181.78.88 |
-| Castor    | EDNA Staging     |               |
-| Jishui    | EDNA Demo        |               |
-| Mekbuda   | MTProxy server   |               |
+| Name        | Function              | IP            |
+| :---------: | :-------------------: | :-----------: |
+| Alhena      | Hermetic              |               |
+| Alzirr      | Swampwalk/TT          | 135.181.78.88 |
+| Castor      | EDNA Staging          |               |
+| Jishui      | EDNA Demo             |               |
+| Mebsuta     | vpn.serokell.net      |               |
+| Mekbuda     | MTProxy server        |               |
+| Tejat Prior | Mumble + Ligo Web IDE |               |
+| Wasat       | Old Wireguard server  |               |
 
 <!-- Don't forget to add the servers on https://www.notion.so/serokell/Server-Naming-Scheme-c189819000164fb090377c75e4ce7da6 -->
 
