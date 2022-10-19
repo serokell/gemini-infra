@@ -96,7 +96,7 @@
           ${terraform}/bin/terraform "$@"
         '';
       in {
-        packages = { inherit (pkgs.extend self.overlay) mtg suitecrm nix; };
+        packages = { inherit (pkgs.extend self.overlay) mtg nix; };
 
         devShell = self.devShells.${system}.default;
         devShells.default = pkgs.mkShell {
