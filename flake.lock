@@ -85,11 +85,11 @@
     },
     "composition-c4": {
       "locked": {
-        "lastModified": 1623090606,
-        "narHash": "sha256-iQRhXFZEScUHPLwR9wCPnGpNlYnVGxIe3+Zopr1ETi8=",
+        "lastModified": 1653632860,
+        "narHash": "sha256-ZG4sKVlgwqMTMigJefu9H1AlHpcuxDbaG8KiziBdii8=",
         "owner": "fossar",
         "repo": "composition-c4",
-        "rev": "9232e2b8e54adb310f476f5fe66f4b6fb5996487",
+        "rev": "2175e6fc35126255ca51fe6dec978f93f3ce7464",
         "type": "github"
       },
       "original": {
@@ -105,11 +105,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1652079807,
-        "narHash": "sha256-aCs1EwO9K2yJ1DcT4+4g7BMlJBWP7Xjs4k5i8ueR8PU=",
+        "lastModified": 1659725433,
+        "narHash": "sha256-1ZxuK67TL29YLw88vQ18Y2Y6iYg8Jb7I6/HVzmNB6nM=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "690f698b18345d894784752b5fa93b9b8f3cc29f",
+        "rev": "41f15759dd8b638e7b4f299730d94d5aa46ab7eb",
         "type": "github"
       },
       "original": {
@@ -313,11 +313,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1652776076,
-        "narHash": "sha256-gzTw/v1vj4dOVbpBSJX4J0DwUR6LIyXo7/SuuTJp1kM=",
+        "lastModified": 1667077288,
+        "narHash": "sha256-bdC8sFNDpT0HK74u9fUkpbf1MEzVYJ+ka7NXCdgBoaA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "04c1b180862888302ddfb2e3ad9eaa63afc60cf8",
+        "rev": "6ee9ebb6b1ee695d2cacc4faa053a7b9baa76817",
         "type": "github"
       },
       "original": {
@@ -474,18 +474,23 @@
       }
     },
     "gitignore": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": [
+          "hermetic",
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1594969032,
-        "narHash": "sha256-nbZfz02QoVe1yYK7EtCV7wMi4VdHzZEoPg20ZSDo9to=",
+        "lastModified": 1660459072,
+        "narHash": "sha256-8DFJjXG8zqoONA1vXtgeKXy68KdJL5UaXR8NtVMUbx8=",
         "owner": "hercules-ci",
-        "repo": "gitignore",
-        "rev": "c4662e662462e7bf3c2a968483478a665d00e717",
+        "repo": "gitignore.nix",
+        "rev": "a20de23b925fd8264fd7fad6454652e142fd7f73",
         "type": "github"
       },
       "original": {
         "owner": "hercules-ci",
-        "repo": "gitignore",
+        "repo": "gitignore.nix",
         "type": "github"
       }
     },
@@ -585,11 +590,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1650649193,
-        "narHash": "sha256-/olvtdurBTV5f2qSIMYy+t3TWclJt4OBHV0QdNhRY/k=",
+        "lastModified": 1667538004,
+        "narHash": "sha256-0Qp3sUSPbrlA55Pd8urt9LYsBZWBR672duTPEFuGMt8=",
         "owner": "serokell",
         "repo": "hermetic",
-        "rev": "4d2597ffb796708176d4fb8abacab8d98b1189ab",
+        "rev": "26c22e982423fcf8813ac63185ee432093384253",
         "type": "github"
       },
       "original": {
@@ -649,11 +654,11 @@
       },
       "locked": {
         "dir": "tools/webide-new",
-        "lastModified": 1666941156,
-        "narHash": "sha256-402BQesPbe1mqOo58KNLCQesR8dJiDn7RI4i+u9Q2tI=",
+        "lastModified": 1667341183,
+        "narHash": "sha256-yqSTOdLRA+hOz+ZuysmO9bBubuQNQytFwE9Pr+8dp5U=",
         "ref": "refs/heads/tooling",
-        "rev": "ba9ee6b907f9e6d4b194e26081e44f449b9ee7a5",
-        "revCount": 11542,
+        "rev": "53fbf8ec8a80bf6040e1a9d4d41f3cb336137a7e",
+        "revCount": 11857,
         "type": "git",
         "url": "https://gitlab.com/serokell/ligo/ligo?dir=tools%2fwebide-new"
       },
@@ -878,11 +883,11 @@
         "nixpkgs-regression": "nixpkgs-regression_4"
       },
       "locked": {
-        "lastModified": 1657886512,
-        "narHash": "sha256-B9EyDUz/9tlcWwf24lwxCFmkxuPTVW7HFYvp0C4xGbc=",
+        "lastModified": 1662468690,
+        "narHash": "sha256-PyDDOsRZivWrny8ETA9UUgfKAJbkunHWoIWmPmQ18Wg=",
         "owner": "nixos",
         "repo": "nix",
-        "rev": "0b62dab6db3da5b20e62697b14aaaf80f1a2eea6",
+        "rev": "73b3ba878a86e9a4d5e46fb16ce735b7dea4c929",
         "type": "github"
       },
       "original": {
@@ -1168,11 +1173,11 @@
     },
     "nixpkgs_14": {
       "locked": {
-        "lastModified": 1651144877,
-        "narHash": "sha256-GX9VhRym/XDoI78Eqvq9wCPB7li/xqxLEzQpkdhBFbA=",
+        "lastModified": 1667318090,
+        "narHash": "sha256-AvxgT+t1BWZs8IfdseHl8+7wvWWm9pvysupMT9wXdH0=",
         "owner": "serokell",
         "repo": "nixpkgs",
-        "rev": "cf0afe951da00abdcac2dfbf9fcb26ac9ba8c85e",
+        "rev": "4bce79cf151aad3c0bed46a32bdb4b165f00cb7e",
         "type": "github"
       },
       "original": {
@@ -1497,11 +1502,11 @@
         "nixpkgs": "nixpkgs_17"
       },
       "locked": {
-        "lastModified": 1663574694,
-        "narHash": "sha256-X+lVHZ4K9lzWfFtkkbIvYUSjMaFN8BGsP1lLiS3A0Ts=",
+        "lastModified": 1666982138,
+        "narHash": "sha256-dPSScyo7Y1OBsAOBksIHJ2WV1jwvjhhABPrsmjkA7LA=",
         "owner": "serokell",
         "repo": "serokell.nix",
-        "rev": "cc64abca932254f2e1c362e926d01472a2790ed1",
+        "rev": "1b2134f93dc143589adf7efa828dacfe4a17635c",
         "type": "github"
       },
       "original": {
@@ -1658,11 +1663,11 @@
         "nixpkgs": "nixpkgs_19"
       },
       "locked": {
-        "lastModified": 1633626134,
-        "narHash": "sha256-fvd+l1iuH+ufwNIt6ppZnIfMs+BEj5dtIAKmGKTbaCQ=",
+        "lastModified": 1655914948,
+        "narHash": "sha256-9/NrBoUoVXUSVl6wnbEqrtgs1Yr1Bl/j0WYz7ANZ9tk=",
         "owner": "serokell",
         "repo": "vault-secrets",
-        "rev": "1bf4a02eea83d3042bd3d1e2f2266b15077b48b4",
+        "rev": "4b8608e48c6748382fa32131d69c2f01a48874ed",
         "type": "github"
       },
       "original": {

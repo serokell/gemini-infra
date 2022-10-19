@@ -20,7 +20,6 @@
     };
 
     ligo-webide.url = "git+https://gitlab.com/serokell/ligo/ligo?dir=tools/webide-new";
-
   };
 
   outputs = { self, nix, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
@@ -32,7 +31,7 @@
       allOverlays = [
         serokell-nix.overlay
         vault-secrets.overlay
-        composition-c4.overlay
+        composition-c4.overlays.default
         self.overlay
       ];
 
@@ -109,7 +108,7 @@
             (pkgs.vault-push-approles self)
             terraform-pinned
             nix.packages.${system}.nix
-            pkgs.aws
+            pkgs.awscli
           ];
         };
 
