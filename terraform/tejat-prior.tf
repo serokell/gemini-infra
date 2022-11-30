@@ -23,7 +23,7 @@ resource "aws_instance" "tejat-prior" {
   ami = data.aws_ami.nixos.id
   root_block_device {
     volume_type = "gp2"
-    volume_size = "20"
+    volume_size = "40"
   }
 }
 
