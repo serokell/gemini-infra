@@ -20,6 +20,8 @@ with lib;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBuEKUhfJWZXUqgE2hN+aekbRj5yU8Q0kT4FjducocP webide" ];
   };
 
+  serokell-users.wheelUsers = [ "sashasashasasha151" "pgujjula" ];
+
   security.sudo.extraRules = [
     {
       users = [ "deploy" ];
