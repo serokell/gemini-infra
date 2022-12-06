@@ -34,7 +34,7 @@ with lib;
 
   users.groups.deploy = {};
 
-  containers.ligo-webide-thing = {
+  containers.ligo-webide-thing = rec {
     autoStart = true;
     config = {
       imports = [ inputs.ligo-webide.nixosModules.default ];
@@ -49,12 +49,20 @@ with lib;
         enable = true;
         package = "${profile-root}/frontend";
       };
+      services.prometheus.exporters.node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        disabledCollectors = [ "timex" ];
+        listenAddress = localAddress;
+      };
+      networking.firewall.allowedTCPPorts = [ 9100 ];
     };
     bindMounts."${profile-root}".hostPath = "${profile-root}";
     ephemeral = true;
     privateNetwork = true;
     hostAddress = "192.168.100.10";
     localAddress = "192.168.100.11";
+    forwardPorts = [ { protocol = "tcp"; hostPort = 10100; containerPort = 9100; } ];
   };
   networking.nat.enable = true;
   networking.nat.internalInterfaces = ["ve-+"];
