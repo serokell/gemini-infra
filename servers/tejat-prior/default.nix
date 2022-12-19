@@ -1,6 +1,7 @@
 { modulesPath, inputs, config, pkgs, lib, ... }:
 let
   profile-root = "/nix/var/nix/profiles/per-user/deploy";
+  vs = config.vault-secrets.secrets;
 in
 with lib;
 {
@@ -43,6 +44,7 @@ with lib;
         package = "${profile-root}/backend";
         ligo-package = "${profile-root}/ligo";
         tezos-client-package = "${profile-root}/tezos-client";
+        gist-token = "/run/gist-token";
       };
       services.ligo-webide-frontend = {
         serverName = "localhost";
@@ -58,6 +60,7 @@ with lib;
       networking.firewall.allowedTCPPorts = [ 9100 ];
     };
     bindMounts."${profile-root}".hostPath = "${profile-root}";
+    bindMounts."/run/gist-token".hostPath = "${vs.webide}/gist-token";
     ephemeral = true;
     privateNetwork = true;
     hostAddress = "192.168.100.10";
@@ -67,6 +70,8 @@ with lib;
   networking.nat.enable = true;
   networking.nat.internalInterfaces = ["ve-+"];
   networking.nat.externalInterface = "ens5";
+
+  vault-secrets.secrets.webide = {};
 
   services.nginx = {
     enable = true;
