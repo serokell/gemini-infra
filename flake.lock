@@ -105,11 +105,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1659725433,
-        "narHash": "sha256-1ZxuK67TL29YLw88vQ18Y2Y6iYg8Jb7I6/HVzmNB6nM=",
+        "lastModified": 1668797197,
+        "narHash": "sha256-0w6iD3GSSQbIeSFVDzAAQZB+hDq670ZTms3d9XI+BtM=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "41f15759dd8b638e7b4f299730d94d5aa46ab7eb",
+        "rev": "2a3c5f70eee04a465aa534d8bd4fcc9bb3c4a8ce",
         "type": "github"
       },
       "original": {
@@ -124,11 +124,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1659725433,
-        "narHash": "sha256-1ZxuK67TL29YLw88vQ18Y2Y6iYg8Jb7I6/HVzmNB6nM=",
+        "lastModified": 1668797197,
+        "narHash": "sha256-0w6iD3GSSQbIeSFVDzAAQZB+hDq670ZTms3d9XI+BtM=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "41f15759dd8b638e7b4f299730d94d5aa46ab7eb",
+        "rev": "2a3c5f70eee04a465aa534d8bd4fcc9bb3c4a8ce",
         "type": "github"
       },
       "original": {
@@ -670,11 +670,11 @@
       },
       "locked": {
         "dir": "tools/webide-new",
-        "lastModified": 1669854380,
-        "narHash": "sha256-Ro164LxZ8QrpaFy/1KilxWAmhXCyLLXHY57b66lbIQ0=",
+        "lastModified": 1671621857,
+        "narHash": "sha256-jMFApHeXxtdJAnMYq5uhUuu0FA2tUFT1IEfoxWr1pEM=",
         "ref": "refs/heads/tooling",
-        "rev": "2d69da4de33eaf0aa83a3df3ef4c9948ffc765fb",
-        "revCount": 12320,
+        "rev": "82325d5f41a2f52621664234093cf1627733d9de",
+        "revCount": 12754,
         "type": "git",
         "url": "https://gitlab.com/serokell/ligo/ligo?dir=tools%2fwebide-new"
       },
