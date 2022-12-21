@@ -41,15 +41,15 @@ with lib;
       imports = [ inputs.ligo-webide.nixosModules.default ];
       services.ligo-webide = {
         enable = true;
-        package = "${profile-root}/backend";
-        ligo-package = "${profile-root}/ligo";
-        tezos-client-package = "${profile-root}/tezos-client";
+        package = "${profile-root}/webide/backend";
+        ligo-package = "${profile-root}/webide/ligo";
+        tezos-client-package = "${profile-root}/webide/tezos-client";
         gist-token = "/run/gist-token";
       };
       services.ligo-webide-frontend = {
         serverName = "localhost";
         enable = true;
-        package = "${profile-root}/frontend";
+        package = "${profile-root}/webide/frontend";
       };
       services.prometheus.exporters.node = {
         enable = true;
