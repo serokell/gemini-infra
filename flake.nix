@@ -20,10 +20,11 @@
     };
 
     ligo-webide.url = "git+https://gitlab.com/serokell/ligo/ligo?dir=tools/webide-new";
+    nix-npm-buildpackage.url = "github:serokell/nix-npm-buildpackage";
   };
 
   outputs = { self, nix, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
-    , composition-c4, ... }@inputs:
+    , composition-c4, nix-npm-buildpackage, ... }@inputs:
     let
       inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
       inherit (builtins) readDir mapAttrs;
@@ -33,6 +34,7 @@
         vault-secrets.overlay
         composition-c4.overlays.default
         self.overlay
+        nix-npm-buildpackage.overlays.default
       ];
 
       servers = mapAttrs (path: _: import (./servers + "/${path}"))

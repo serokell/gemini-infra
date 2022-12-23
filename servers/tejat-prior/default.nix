@@ -2,11 +2,15 @@
 let
   profile-root = "/nix/var/nix/profiles/per-user/deploy";
   vs = config.vault-secrets.secrets;
+  ports = {
+    cors-proxy = 9999;
+  };
 in
 with lib;
 {
   imports = [
     inputs.serokell-nix.nixosModules.ec2
+    inputs.self.nixosModules.cors-proxy
   ];
 
   networking.firewall =
@@ -82,6 +86,16 @@ with lib;
       forceSSL = true;
       locations."/".proxyPass = "http://192.168.100.11:80";
     };
+    virtualHosts."ligo-webide-cors-proxy.serokell.team" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".proxyPass = "http://127.0.0.1:${toString ports.cors-proxy}";
+    };
+  };
+
+  services.cors-proxy = {
+    enable = true;
+    port = ports.cors-proxy;
   };
 
   services.murmur =
