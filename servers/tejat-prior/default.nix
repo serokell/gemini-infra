@@ -31,7 +31,7 @@ with lib;
     {
       users = [ "deploy" ];
       commands = [{
-        command = "/run/current-system/sw/bin/systemctl restart container@ligo-webide-thing.service";
+        command = "/run/current-system/sw/bin/nixos-container run ligo-webide-thing -- *";
         options = [ "NOPASSWD" ];
       }];
     }
