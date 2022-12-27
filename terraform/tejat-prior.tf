@@ -64,3 +64,11 @@ resource "aws_route53_record" "ligo_webide_cname" {
   ttl     = "60"
   records = [aws_route53_record.tejat-prior_gemini_serokell_team_ipv4.name]
 }
+
+resource "aws_route53_record" "ligo_webide_cors_proxy_cname" {
+  zone_id = data.aws_route53_zone.serokell_team.zone_id
+  name    = "ligo-webide-cors-proxy.${data.aws_route53_zone.serokell_team.name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = [aws_route53_record.tejat-prior_gemini_serokell_team_ipv4.name]
+}
