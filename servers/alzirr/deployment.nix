@@ -75,6 +75,7 @@ in
         enableACME = true;
 
         serverName = "tt2.serokell.io";
+        serverAliases = [ "tt.serokell.io" ];
 
         locations."/" = {
           root = swampwalk2-frontend-profile;
