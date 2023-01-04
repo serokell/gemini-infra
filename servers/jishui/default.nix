@@ -8,7 +8,7 @@
 
   serokell-users = {
     wheelUsers = [ "gromak" ];
-    regularUsers = [ "pva701" "sashasashasasha151" ];
+    regularUsers = [ "sashasashasasha151" ];
   };
 
   # Deployment user
