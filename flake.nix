@@ -27,7 +27,7 @@
     , composition-c4, nix-npm-buildpackage, ... }@inputs:
     let
       inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
-      inherit (builtins) readDir mapAttrs;
+      inherit (builtins) readDir mapAttrs attrNames;
 
       allOverlays = [
         serokell-nix.overlay
@@ -51,6 +51,12 @@
             libPath = toString ./lib;
           };
         };
+
+      # make a matrix to use in GitHub pipeline
+      mkMatrix = name: attrs: {
+        include = map (v: { ${name} = v; }) (attrNames attrs);
+      };
+
     in {
       nixosConfigurations = mapAttrs (const mkSystem) servers;
 
@@ -71,14 +77,12 @@
             deploy-rs.lib.${system}.activate.nixos nixosConfig;
         }) self.nixosConfigurations;
       };
-
-      pipelineFile = serokell-nix.lib.pipeline.mkPipelineFile self;
     } // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = serokell-nix.lib.pkgsWith nixpkgs.legacyPackages.${system} allOverlays;
 
         vpcModule = builtins.fetchGit {
-          url = "git+ssh://git@github.com/terraform-aws-modules/terraform-aws-vpc.git";
+          url = "https://github.com/terraform-aws-modules/terraform-aws-vpc.git";
           rev = "e02118633f268ff1f86021a8fa9f3afcd1c37d85";
         };
 
@@ -97,7 +101,7 @@
           ${terraform}/bin/terraform "$@"
         '';
       in {
-        packages = { inherit (pkgs.extend self.overlay) mtg nix; };
+        packages = { inherit (pkgs.extend self.overlay) mtg; };
 
         devShell = self.devShells.${system}.default;
         devShells.default = pkgs.mkShell {
@@ -114,6 +118,10 @@
           ];
         };
 
+        # used in GitHub pipeline
+        server-matrix = mkMatrix "server" servers;
+        check-matrix = mkMatrix "check" self.checks.${system};
+
         checks = deploy-rs.lib.${system}.deployChecks self.deploy // {
           trailing-whitespace = pkgs.build.checkTrailingWhitespace ./.;
           terraform = pkgs.runCommand "terraform-check" {  } ''
@@ -122,6 +130,8 @@
             ${terraform-pinned}/bin/terraform validate
             touch $out
           '';
+
+          inherit (self.packages.${system}) mtg;
         };
       });
 }

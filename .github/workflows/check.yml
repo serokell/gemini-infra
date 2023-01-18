@@ -1,0 +1,45 @@
+name: nix flake check
+on: push
+
+jobs:
+  get-matrices:
+    runs-on: [self-hosted, nix]
+    outputs:
+      server-matrix: ${{ steps.set-server-matrix.outputs.matrix }}
+      check-matrix: ${{ steps.set-check-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - id: set-server-matrix
+        run: echo "matrix=$(nix eval --json .#server-matrix.x86_64-linux)" >> $GITHUB_OUTPUT
+
+      - id: set-check-matrix
+        run: echo "matrix=$(nix eval --json .#check-matrix.x86_64-linux)" >> $GITHUB_OUTPUT
+
+  check:
+    needs: get-matrices
+    name: check ${{ matrix.check }}
+    runs-on: [self-hosted, nix]
+    strategy:
+      fail-fast: false
+      # this matrix consists of the names of all checks defined in flake.nix
+      matrix: ${{fromJson(needs.get-matrices.outputs.check-matrix)}}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: check
+        run: nix build -L .#checks.x86_64-linux.${{ matrix.check }}
+
+  build-profiles:
+    needs: get-matrices
+    name: build ${{ matrix.server }} profiles
+    runs-on: [self-hosted, nix]
+    strategy:
+      fail-fast: false
+      # this matrix consists of the names of all servers located in the ./servers directory
+      matrix: ${{fromJson(needs.get-matrices.outputs.server-matrix)}}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: build
+        run: nix build -L .#deploy.nodes.${{ matrix.server }}.profiles.system.path
