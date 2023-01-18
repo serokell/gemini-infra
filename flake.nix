@@ -69,8 +69,6 @@
             deploy-rs.lib.${system}.activate.nixos nixosConfig;
         }) self.nixosConfigurations;
       };
-
-      pipelineFile = serokell-nix.lib.pipeline.mkPipelineFile self;
     } // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = serokell-nix.lib.pkgsWith nixpkgs.legacyPackages.${system} allOverlays;
@@ -120,6 +118,8 @@
             ${terraform-pinned}/bin/terraform validate
             touch $out
           '';
+
+          inherit (self.packages.${system}) mtg nix;
         };
       });
 }
