@@ -2,7 +2,7 @@
   # (offboarded) "2" = "VxD6G/MJhuFGiJXL5ad5b8SSbC/kgzfQJjIvWFr6th4=";  # Yegor Timoshenko
   # (offboarded) "3"  = "yXXfdeMOAy2qNjZX5jumaAi2qGSb/YEqdqI+HYWO/ho="; # Maxim Koltsov
   "4"  = "Wi1CW3vJIvxYvdrbBh6TYGdNnDbu6AvhFXxpVoVGEUQ="; # Arseniy Seroka (phone)
-  "5"  = "h/trC+5Z8qbGBJtroYITQGMNUn5XQZ/JRqVR3iIH5Ro="; # Rinat Stryungis (Windows - lenovo)
+  # "5"  = "h/trC+5Z8qbGBJtroYITQGMNUn5XQZ/JRqVR3iIH5Ro="; # Rinat Stryungis (Windows - lenovo)
   #6   removed
   # (offboarded - HR-96) "7"  = "yn1o899Ib3PFJZph50YdK6N4Kiyl2vdL1coBLff1mhY="; # Lars Jellema
   # (offboarded) "8"  = "iebbc7JjKvxeNNyRi++Z6F8MRfQMD8NOg0xttUFj40U="; # Yorick van Pelt
@@ -35,7 +35,7 @@
   "36" = "mhsybC2wiwIlRIDIJYqZEE5aIR8S7fkNxIPIubcVtSU="; # office SPb (srkrt)
   # (offboarded) "37" = "NwZ6bfanB8RxPzsiPvCRId6N8JJLiyXTl6ZB/bfI80I="; # Ilya Peresadin (MacOS)
   # (offboarded) "38" = "SSayDwgxJv6LFiMw72iPdKLT5PHTrRwx1ODk8Db9wxE="; # Paul Tsupikoff (phone)
-  "39" = "2E/S/T+n53bbP0CV04uayrs6POZ9qZLrtl4Am26naVI="; # Rinat Stryungis (nixOS)
+  # "39" = "2E/S/T+n53bbP0CV04uayrs6POZ9qZLrtl4Am26naVI="; # Rinat Stryungis (nixOS)
   # (offboarded) "40" = "oIZ4XLs9E/W8UzrTs+byJRBbgs5/HWQtNvP+et27o0w="; # Zhenya Vinogradov
   # (suspicious traffic) "41" = "uUZiefGUqrMWIFYhAd0oJRVCj3wQEoiYhEVr7ACXYSw="; # Anton Myasnikov (linux)
   # unused "42" = "6wXyIaig7Syeaj9+fW3J9IxRAYm1WxJKzuA9wEdwGGc="; # Roman Melnikov
