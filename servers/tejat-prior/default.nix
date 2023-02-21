@@ -11,6 +11,7 @@ with lib;
   imports = [
     inputs.serokell-nix.nixosModules.ec2
     inputs.self.nixosModules.cors-proxy
+    inputs.tzbot.nixosModules.default
   ];
 
   networking.firewall =
@@ -25,7 +26,7 @@ with lib;
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBuEKUhfJWZXUqgE2hN+aekbRj5yU8Q0kT4FjducocP webide" ];
   };
 
-  serokell-users.wheelUsers = [ "sashasashasasha151" "pgujjula" ];
+  serokell-users.wheelUsers = [ "sashasashasasha151" "pgujjula" "diogo" ];
 
   security.sudo.extraRules = [
     {
@@ -114,6 +115,15 @@ with lib;
   };
 
   systemd.services.murmur.serviceConfig.EnvironmentFile = "${config.vault-secrets.secrets.murmur}/environment";
+
+  services.tzbot = {
+    enable = true;
+    slackAppToken = "$SLACK_APP_TOKEN";
+    slackBotToken = "$SLACK_BOT_TOKEN";
+  };
+  systemd.services.tzbot.serviceConfig.EnvironmentFile = "${config.vault-secrets.secrets.tzbot}/environment";
+  systemd.services.tzbot.after = [ "network.target" "tzbot-secrets.service" ];
+  vault-secrets.secrets.tzbot = { user = "tzbot"; };
 
   networking.hostName = "tejat-prior";
   wireguard-ip-address = "172.21.0.37";

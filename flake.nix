@@ -21,6 +21,7 @@
 
     ligo-webide.url = "git+https://gitlab.com/serokell/ligo/ligo?dir=tools/webide-new";
     nix-npm-buildpackage.url = "github:serokell/nix-npm-buildpackage";
+    tzbot.url = "github:serokell/tzbot";
   };
 
   outputs = { self, nix, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
