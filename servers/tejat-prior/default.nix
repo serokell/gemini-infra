@@ -23,7 +23,10 @@ with lib;
     isSystemUser = true;
     useDefaultShell = true;
     group = "deploy";
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBuEKUhfJWZXUqgE2hN+aekbRj5yU8Q0kT4FjducocP webide" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBuEKUhfJWZXUqgE2hN+aekbRj5yU8Q0kT4FjducocP webide"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdYHfE6k3bQ8xRy8r0MmOeLzyFlTuVbPPjVjXjeRUXD tzbot"
+    ];
   };
 
   serokell-users.wheelUsers = [ "sashasashasasha151" "pgujjula" "diogo" ];
@@ -31,10 +34,16 @@ with lib;
   security.sudo.extraRules = [
     {
       users = [ "deploy" ];
-      commands = [{
-        command = "/run/current-system/sw/bin/nixos-container run ligo-webide-thing -- *";
-        options = [ "NOPASSWD" ];
-      }];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-container run ligo-webide-thing -- *";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "/run/current-system/sw/bin/systemctl restart tzbot";
+          options = [ "NOPASSWD" ];
+        }
+      ];
     }
   ];
 
@@ -118,6 +127,7 @@ with lib;
 
   services.tzbot = {
     enable = true;
+    package = "${profile-root}/tzbot";
     slackAppToken = "$SLACK_APP_TOKEN";
     slackBotToken = "$SLACK_BOT_TOKEN";
   };
