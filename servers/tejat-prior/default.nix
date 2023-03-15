@@ -24,21 +24,16 @@ with lib;
     useDefaultShell = true;
     group = "deploy";
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINBuEKUhfJWZXUqgE2hN+aekbRj5yU8Q0kT4FjducocP webide"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdYHfE6k3bQ8xRy8r0MmOeLzyFlTuVbPPjVjXjeRUXD tzbot"
     ];
   };
 
-  serokell-users.wheelUsers = [ "sashasashasasha151" "pgujjula" "diogo" ];
+  serokell-users.wheelUsers = [ "diogo" ];
 
   security.sudo.extraRules = [
     {
       users = [ "deploy" ];
       commands = [
-        {
-          command = "/run/current-system/sw/bin/nixos-container run ligo-webide-thing -- *";
-          options = [ "NOPASSWD" ];
-        }
         {
           command = "/run/current-system/sw/bin/systemctl restart tzbot";
           options = [ "NOPASSWD" ];
@@ -49,53 +44,10 @@ with lib;
 
   users.groups.deploy = {};
 
-  containers.ligo-webide-thing = rec {
-    autoStart = true;
-    config = {
-      imports = [ inputs.ligo-webide.nixosModules.default ];
-      services.ligo-webide = {
-        enable = true;
-        package = "${profile-root}/webide/backend";
-        ligo-package = "${profile-root}/webide/ligo";
-        tezos-client-package = "${profile-root}/webide/tezos-client";
-        gist-token = "/run/gist-token";
-      };
-      services.ligo-webide-frontend = {
-        serverName = "localhost";
-        enable = true;
-        package = "${profile-root}/webide/frontend";
-      };
-      services.prometheus.exporters.node = {
-        enable = true;
-        enabledCollectors = [ "systemd" ];
-        disabledCollectors = [ "timex" ];
-        listenAddress = localAddress;
-      };
-      networking.firewall.allowedTCPPorts = [ 9100 ];
-    };
-    bindMounts."${profile-root}".hostPath = "${profile-root}";
-    bindMounts."/run/gist-token".hostPath = "${vs.webide}/gist-token";
-    ephemeral = true;
-    privateNetwork = true;
-    hostAddress = "192.168.100.10";
-    localAddress = "192.168.100.11";
-    forwardPorts = [ { protocol = "tcp"; hostPort = 10100; containerPort = 9100; } ];
-  };
-  networking.nat.enable = true;
-  networking.nat.internalInterfaces = ["ve-+"];
-  networking.nat.externalInterface = "ens5";
-
-  vault-secrets.secrets.webide = {};
-
   services.nginx = {
     enable = true;
     openFirewall = true;
     addSecurityHeaders = false;
-    virtualHosts."ligo-webide.serokell.team" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/".proxyPass = "http://192.168.100.11:80";
-    };
     virtualHosts."ligo-webide-cors-proxy.serokell.team" = {
       enableACME = true;
       forceSSL = true;
