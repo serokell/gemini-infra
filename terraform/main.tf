@@ -8,20 +8,20 @@ terraform {
   }
 
   ## Prevent unwanted updates
-  required_version = "1.3.2" # Use nix-shell or nix develop
+  required_version = "1.3.7" # Use nix-shell or nix develop
 
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "~> 4.35.0"
+      version = "~> 4.51.0"
     }
     hcloud = {
       source = "hetznercloud/hcloud"
-      version = "~> 1.35.2"
+      version = "~> 1.36.2"
     }
     vault = {
       source = "hashicorp/vault"
-      version = "~> 3.9.1"
+      version = "~> 3.12.0"
     }
   }
 }

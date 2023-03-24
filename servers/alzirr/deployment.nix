@@ -21,7 +21,7 @@ in
     vim
     rsync
     tmux
-    python
+    python3
     rebar3
     elixir
     erlang

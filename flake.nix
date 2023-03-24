@@ -16,10 +16,12 @@
     composition-c4.url = "github:fossar/composition-c4";
     subspace = {
       url = "github:serokell/subspace";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # subspace fails with
+      # subspace-start: line 11: 1607212 Bad system call         (core dumped)
+      # with newer nixpkgs
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ligo-webide.url = "git+https://gitlab.com/serokell/ligo/ligo?dir=tools/webide-new";
     nix-npm-buildpackage.url = "github:serokell/nix-npm-buildpackage";
     tzbot.url = "github:serokell/tzbot";
   };
