@@ -24,6 +24,9 @@ resource "aws_instance" "castor" {
     volume_type = "gp2"
     volume_size = "30"
   }
+  tags = {
+    Name = "castor"
+  }
 }
 
 # Public DNS

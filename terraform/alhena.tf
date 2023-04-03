@@ -25,6 +25,9 @@ resource "aws_instance" "alhena" {
     volume_type = "gp2"
     volume_size = "20"
   }
+  tags = {
+    Name = "alhena"
+  }
 }
 
 # Public DNS
