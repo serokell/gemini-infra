@@ -24,6 +24,9 @@ resource "aws_instance" "jishui" {
     volume_type = "gp2"
     volume_size = "30"
   }
+  tags = {
+    Name = "jishui"
+  }
 }
 
 # Public DNS

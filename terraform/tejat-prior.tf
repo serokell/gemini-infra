@@ -25,6 +25,9 @@ resource "aws_instance" "tejat-prior" {
     volume_type = "gp2"
     volume_size = "40"
   }
+  tags = {
+    Name = "tejat-prior"
+  }
 }
 
 # Public DNS

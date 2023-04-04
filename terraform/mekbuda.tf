@@ -24,6 +24,9 @@ resource "aws_instance" "mekbuda" {
     volume_type = "gp2"
     volume_size = "20"
   }
+  tags = {
+    Name = "mekbuda"
+  }
 }
 
 # Public DNS
