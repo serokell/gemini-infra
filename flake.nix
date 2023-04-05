@@ -36,7 +36,6 @@
         serokell-nix.overlay
         vault-secrets.overlay
         composition-c4.overlays.default
-        self.overlay
         nix-npm-buildpackage.overlays.default
       ];
 
@@ -64,8 +63,6 @@
       nixosConfigurations = mapAttrs (const mkSystem) servers;
 
       nixosModules = import ./modules;
-
-      overlay = import ./packages;
 
       deploy = {
         magicRollback = true;
@@ -104,8 +101,6 @@
           ${terraform}/bin/terraform "$@"
         '';
       in {
-        packages = { inherit (pkgs.extend self.overlay) mtg; };
-
         devShell = self.devShells.${system}.default;
         devShells.default = pkgs.mkShell {
           VAULT_ADDR = "https://vault.serokell.org:8200";
@@ -134,7 +129,6 @@
             touch $out
           '';
 
-          inherit (self.packages.${system}) mtg;
         };
       });
 }
