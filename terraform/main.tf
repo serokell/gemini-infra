@@ -158,21 +158,6 @@ resource "aws_security_group" "mumble" {
   }
 }
 
-# Allow mtg traffic
-resource "aws_security_group" "mtg" {
-  name = "mtg"
-  description = "Allow inbound and outbound traffic of mtg server"
-  vpc_id = module.vpc.vpc_id
-
-  ingress {
-    from_port = 3128
-    to_port = 3128
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-}
-
 # Allow wireguard traffic
 resource "aws_security_group" "wireguard" {
   name = "wireguard"
