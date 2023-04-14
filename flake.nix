@@ -24,10 +24,19 @@
 
     nix-npm-buildpackage.url = "github:serokell/nix-npm-buildpackage";
     tzbot.url = "github:serokell/tzbot";
+
+    serokell-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    terranix-simple = {
+      url = "git+ssh://git@github.com/serokell/terranix-simple";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    terranix.url = "github:terranix/terranix";
+    terranix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nix, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
-    , composition-c4, nix-npm-buildpackage, ... }@inputs:
+    , composition-c4, nix-npm-buildpackage, terranix, terranix-simple, ... }@inputs:
     let
       inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
       inherit (builtins) readDir mapAttrs attrNames;
@@ -37,6 +46,7 @@
         vault-secrets.overlay
         composition-c4.overlays.default
         nix-npm-buildpackage.overlays.default
+        terranix-simple.overlay
       ];
 
       servers = mapAttrs (path: _: import (./servers + "/${path}"))
@@ -81,25 +91,23 @@
       let
         pkgs = serokell-nix.lib.pkgsWith nixpkgs.legacyPackages.${system} allOverlays;
 
-        vpcModule = builtins.fetchGit {
-          url = "https://github.com/terraform-aws-modules/terraform-aws-vpc.git";
-          rev = "e02118633f268ff1f86021a8fa9f3afcd1c37d85";
+        tfConfigAst = terranix.lib.terranixConfigurationAst {
+          inherit system pkgs;
+          modules = [
+            terranix-simple.terranixModules
+            ./terraform/main.nix
+            ./terraform/alhena.nix
+            ./terraform/alzirr.nix
+            ./terraform/castor.nix
+            ./terraform/jishui.nix
+            ./terraform/mebsuta.nix
+            ./terraform/tejat-prior.nix
+            ./terraform/wasat.nix
+          ];
         };
 
-        terraform = pkgs.terraform.withPlugins (p: with p; [ aws vault hcloud ]);
-        # Terraform doesn't expose any other binaries, so that works
-        terraform-pinned = pkgs.writeScriptBin "terraform" ''
-          terraformNixDir=".terraform_nix/modules"
-          if [ -d "terraform" ]; then
-            terraformNixDir="terraform/$terraformNixDir"
-          fi
+        tf-lib = serokell-nix.lib.terraform { inherit pkgs tfConfigAst; };
 
-          mkdir -p "$terraformNixDir"
-          rm -rf "$terraformNixDir/vpc"
-          ln -s ${vpcModule} "$terraformNixDir/vpc"
-
-          ${terraform}/bin/terraform "$@"
-        '';
       in {
         devShell = self.devShells.${system}.default;
         devShells.default = pkgs.mkShell {
@@ -110,7 +118,6 @@
             pkgs.vault
             (pkgs.vault-push-approle-envs self)
             (pkgs.vault-push-approles self)
-            terraform-pinned
             nix.packages.${system}.nix
             pkgs.awscli
           ];
@@ -122,13 +129,9 @@
 
         checks = deploy-rs.lib.${system}.deployChecks self.deploy // {
           trailing-whitespace = pkgs.build.checkTrailingWhitespace ./.;
-          terraform = pkgs.runCommand "terraform-check" {  } ''
-            cp -r ${./terraform}/. .
-            ${terraform-pinned}/bin/terraform init -backend=false
-            ${terraform-pinned}/bin/terraform validate
-            touch $out
-          '';
-
+          inherit (tf-lib) tf-validate;
         };
+
+        apps = tf-lib.mkApps ["apply" "plan" "destroy"];
       });
 }

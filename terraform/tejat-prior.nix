@@ -1,0 +1,63 @@
+{ lib, ... }:
+let
+  inherit (import ./common.nix) mkAWS;
+in {
+  resource.aws_instance.tejat-prior = mkAWS {
+    key_name = "Chris"; # eu-west-2
+
+    volume_size = "40";
+    tags = {
+      Name = "tejat-prior";
+    };
+
+    vpc_security_group_ids = [
+      "\${aws_security_group.egress_all.id}"
+      "\${aws_security_group.http.id}"
+      "\${aws_security_group.ssh.id}"
+      "\${aws_security_group.wireguard.id}"
+      "\${aws_security_group.mumble.id}"
+    ];
+  };
+
+  # Public DNS
+  resource.aws_eip.tejat-prior = {
+    instance = "\${aws_instance.tejat-prior.id}";
+    vpc = true;
+  };
+  resource.aws_route53_record = lib.mapAttrs (_: lib.recursiveUpdate { ttl = "60"; }) {
+    tejat-prior_gemini_serokell_team_ipv4 = {
+      zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
+      name = "tejat-prior.\${aws_route53_zone.gemini_serokell_team.name}";
+      type = "A";
+      records = ["\${aws_eip.tejat-prior.public_ip}"];
+    };
+
+    tejat-prior_gemini_serokell_team_ipv6 = {
+      zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
+      name = "tejat-prior.\${aws_route53_zone.gemini_serokell_team.name}";
+      type = "AAAA";
+      records = ["\${aws_instance.tejat-prior.ipv6_addresses[0]}"];
+    };
+
+    mumble_cname = {
+      zone_id = "\${data.aws_route53_zone.serokell_team.zone_id}";
+      name = "mumble.\${data.aws_route53_zone.serokell_team.name}";
+      type = "CNAME";
+      records = ["\${aws_route53_record.tejat-prior_gemini_serokell_team_ipv4.name}"];
+    };
+
+    ligo_webide_cname = {
+      zone_id = "\${data.aws_route53_zone.serokell_team.zone_id}";
+      name = "ligo-webide.\${data.aws_route53_zone.serokell_team.name}";
+      type = "CNAME";
+      records = ["\${aws_route53_record.tejat-prior_gemini_serokell_team_ipv4.name}"];
+    };
+
+    ligo_webide_cors_proxy_cname = {
+      zone_id = "\${data.aws_route53_zone.serokell_team.zone_id}";
+      name = "ligo-webide-cors-proxy.\${data.aws_route53_zone.serokell_team.name}";
+      type = "CNAME";
+      records = ["\${aws_route53_record.tejat-prior_gemini_serokell_team_ipv4.name}"];
+    };
+  };
+}
