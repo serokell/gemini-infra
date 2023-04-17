@@ -1,6 +1,7 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 let
   inherit (import ./common.nix) mkAWS;
+  inherit (pkgs.lib) mkAddressRecords;
 in {
   resource.aws_instance.alhena = mkAWS {
     key_name = "Chris"; # eu-west-2
@@ -13,19 +14,11 @@ in {
   };
 
   # Public DNS
-  resource.aws_route53_record = lib.mapAttrs (_: lib.recursiveUpdate { ttl = "60"; }) {
-    alhena_gemini_serokell_team_ipv4 = {
-      zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
-      name = "alhena.\${aws_route53_zone.gemini_serokell_team.name}";
-      type = "A";
-      records = ["\${aws_instance.alhena.public_ip}"];
-    };
-
-    alhena_gemini_serokell_team_ipv6 = {
-      zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
-      name = "alhena.\${aws_route53_zone.gemini_serokell_team.name}";
-      type = "AAAA";
-      records = ["\${aws_instance.alhena.ipv6_addresses[0]}"];
-    };
-  };
+  resource.aws_route53_record = mkAddressRecords [{
+    resource = "alhena_gemini_serokell_team";
+    zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
+    name = "alhena.\${aws_route53_zone.gemini_serokell_team.name}";
+    ipv4_records = ["\${aws_instance.alhena.public_ip}"];
+    ipv6_records = ["\${aws_instance.alhena.ipv6_addresses[0]}"];
+  }];
 }

@@ -1874,11 +1874,11 @@
         "vpcModule": "vpcModule"
       },
       "locked": {
-        "lastModified": 1681460124,
-        "narHash": "sha256-Ns40PPDcV1ebh188pxCCnwFdVoLHDJwiSSO9sylCQ2g=",
+        "lastModified": 1681908195,
+        "narHash": "sha256-ne+Bo7GVPUPm7eIuIcWPN8Y1JrqucLyqgKcnCiwHI5c=",
         "ref": "refs/heads/main",
-        "rev": "1643e1a514e8ddbc3289770c39fd38eae309a3ba",
-        "revCount": 8,
+        "rev": "a6f1947a07669738cf2503668d912da53c8d0ce6",
+        "revCount": 14,
         "type": "git",
         "url": "ssh://git@github.com/serokell/terranix-simple"
       },
