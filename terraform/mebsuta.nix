@@ -1,5 +1,7 @@
-{ lib, ... }:
-let inherit (import ./common.nix) mkHcloud;
+{ pkgs, lib, ... }:
+let
+  inherit (import ./common.nix) mkHcloud;
+  inherit (pkgs.lib) mkAddressRecords;
 in {
   resource.hcloud_server.mebsuta = mkHcloud {
     name = "mebsuta";
@@ -7,34 +9,6 @@ in {
   };
 
   resource.aws_route53_record = lib.mapAttrs (_: lib.recursiveUpdate { ttl = "60"; }) {
-    mebsuta_gemini_serokell_team_ipv4 = {
-      zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
-      name = "mebsuta.\${aws_route53_zone.gemini_serokell_team.name}";
-      type = "A";
-      records = ["\${hcloud_server.mebsuta.ipv4_address}"];
-  };
-
-    mebsuta_gemini_serokell_team_ipv6 = {
-      zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
-      name = "mebsuta.\${aws_route53_zone.gemini_serokell_team.name}";
-      type = "AAAA";
-      records = ["\${hcloud_server.mebsuta.ipv6_address}"];
-    };
-
-    vpn_serokell_net_ipv4 = {
-      zone_id = "\${data.aws_route53_zone.serokell_net.zone_id}";
-      name = "vpn.serokell.net";
-      type = "A";
-      records = ["\${hcloud_server.mebsuta.ipv4_address}"];
-    };
-
-    vpn_serokell_net_ipv6 = {
-      zone_id = "\${data.aws_route53_zone.serokell_net.zone_id}";
-      name = "vpn.serokell.net";
-      type = "AAAA";
-      records = ["\${hcloud_server.mebsuta.ipv6_address}"];
-    };
-
     dtunns_serokell_net = {
       zone_id = "\${data.aws_route53_zone.serokell_net.zone_id}";
       name = "dtunns.serokell.net";
@@ -48,5 +22,20 @@ in {
       type = "NS";
       records = ["\${aws_route53_record.dtunns_serokell_net.name}"];
     };
-  };
+  } // mkAddressRecords [
+    {
+      resource = "mebsuta_gemini_serokell_team";
+      zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
+      name = "mebsuta.\${aws_route53_zone.gemini_serokell_team.name}";
+      ipv4_records = ["\${hcloud_server.mebsuta.ipv4_address}"];
+      ipv6_records = ["\${hcloud_server.mebsuta.ipv6_address}"];
+    }
+    {
+      resource = "vpn_serokell_net";
+      zone_id = "\${data.aws_route53_zone.serokell_net.zone_id}";
+      name = "vpn.serokell.net";
+      ipv4_records = ["\${hcloud_server.mebsuta.ipv4_address}"];
+      ipv6_records = ["\${hcloud_server.mebsuta.ipv6_address}"];
+    }
+  ];
 }
