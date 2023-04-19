@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  inherit (import ./common.nix) mkAWS;
+  inherit (import ./common.nix pkgs) mkAWS;
   inherit (pkgs.lib) mkAddressRecords;
 in {
   resource.aws_instance.tejat-prior = mkAWS {

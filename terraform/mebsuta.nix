@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  inherit (import ./common.nix) mkHcloud;
+  inherit (import ./common.nix pkgs) mkHcloud;
   inherit (pkgs.lib) mkAddressRecords;
 in {
   resource.hcloud_server.mebsuta = mkHcloud {
