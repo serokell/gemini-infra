@@ -42,7 +42,6 @@ All necessary programs and dependencies are provided by Nix in `nix-shell` or `n
 | Castor      | EDNA Staging          |               |
 | Jishui      | EDNA Demo             |               |
 | Mebsuta     | vpn.serokell.net      |               |
-| Mekbuda     | MTProxy server        |               |
 | Tejat Prior | Mumble + tzbot        |               |
 | Wasat       | Old Wireguard server  |               |
 
