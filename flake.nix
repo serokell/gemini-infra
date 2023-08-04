@@ -22,10 +22,10 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-npm-buildpackage.url = "github:serokell/nix-npm-buildpackage";
     tzbot.url = "github:serokell/tzbot";
 
     serokell-nix.inputs.nixpkgs.follows = "nixpkgs";
+    vault-secrets.inputs.nixpkgs.follows = "nixpkgs";
 
     terranix-simple = {
       url = "git+ssh://git@github.com/serokell/terranix-simple";
@@ -36,7 +36,7 @@
   };
 
   outputs = { self, nix, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
-    , composition-c4, nix-npm-buildpackage, terranix, terranix-simple, ... }@inputs:
+    , composition-c4, terranix, terranix-simple, ... }@inputs:
     let
       inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
       inherit (builtins) readDir mapAttrs attrNames;
@@ -45,7 +45,6 @@
         serokell-nix.overlay
         vault-secrets.overlay
         composition-c4.overlays.default
-        nix-npm-buildpackage.overlays.default
         terranix-simple.overlay
       ];
 

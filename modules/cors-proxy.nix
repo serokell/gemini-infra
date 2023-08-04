@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 let
-  cors-proxy = (pkgs.extend (self: super: {nodejs = super.nodejs-14_x;})).buildNpmPackage {
+  cors-proxy = pkgs.buildNpmPackage {
+    name = "cors-proxy";
+    npmDepsHash = "sha256-csWMR3cHLrdePxaOMnwWeohP/zYaNaHuA+myx43zERg=";
     src = pkgs.fetchFromGitHub {
       owner = "isomorphic-git";
       repo = "cors-proxy";
@@ -8,8 +10,9 @@ let
       rev = "1b1c91e71d946544d97ccc7cf0ac62b859e03311";
       sha256 = "sha256-YnSYVeq9Irc2QexvSuE7wq+hi8OGZhlLE2JlbRqzMi4=";
     };
+    dontNpmBuild = true;
     postInstall = ''
-      wrapProgram $out/bin/npm --prefix PATH : ${pkgs.lib.makeBinPath (with pkgs; [ nodejs-14_x ])}
+      wrapProgram $out/bin/@isomorphic-git/cors-proxy --prefix PATH : ${pkgs.lib.makeBinPath (with pkgs; [ nodejs-18_x ])}
     '';
   };
   cfg = config.services.cors-proxy;
@@ -40,7 +43,7 @@ in {
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
       script = ''
-        ${cfg.package}/bin/npm start
+        ${cfg.package}/bin/@isomorphic-git/cors-proxy start
       '';
       environment = {
         PORT = toString cfg.port;

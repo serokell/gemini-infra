@@ -11,6 +11,7 @@ in {
   mkHcloud = {name, ssh_keys}: mkHcloud {
     inherit name ssh_keys;
     server_type = "cx11";
+    image = "ubuntu-20.04";
     # Install NixOS 20.09
     user_data = ''
     #cloud-config

@@ -18,7 +18,7 @@
 
   swapDevices = [ ];
 
-  nix.maxJobs = lib.mkDefault 12;
+  nix.settings.max-jobs = lib.mkDefault 12;
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 
   # Use GRUB2 as the boot loader.
@@ -49,7 +49,7 @@
   '';
   # The RAIDs are assembled in stage1, so we need to make the config
   # available there.
-  boot.initrd.mdadmConf = config.environment.etc."mdadm.conf".text;
+  boot.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
 
   # Default mdmonitor service does not work, fix it by directing events to the log.
   # See https://github.com/NixOS/nixpkgs/issues/72394
