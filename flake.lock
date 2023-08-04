@@ -2269,20 +2269,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_22": {
-      "locked": {
-        "lastModified": 1690887328,
-        "narHash": "sha256-G/W/wWRU3YS8F485OTI7srCz8NJVlIIlQZ9OFjdPKFg=",
-        "owner": "serokell",
-        "repo": "nixpkgs",
-        "rev": "998da51f6857c912aca93c51285cbf234f93c80b",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
     "nixpkgs_3": {
       "locked": {
         "lastModified": 1657693803,
@@ -2924,7 +2910,9 @@
         "flake-compat": "flake-compat_14",
         "flake-utils": "flake-utils_15",
         "nix": "nix_6",
-        "nixpkgs": "nixpkgs_22"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1686833044,

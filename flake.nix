@@ -25,6 +25,7 @@
     tzbot.url = "github:serokell/tzbot";
 
     serokell-nix.inputs.nixpkgs.follows = "nixpkgs";
+    vault-secrets.inputs.nixpkgs.follows = "nixpkgs";
 
     terranix-simple = {
       url = "git+ssh://git@github.com/serokell/terranix-simple";
