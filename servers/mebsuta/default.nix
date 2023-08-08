@@ -7,6 +7,7 @@ in
   imports = [
     inputs.serokell-nix.nixosModules.hetzner-cloud
     inputs.subspace.nixosModule
+    ./xray.nix
   ];
 
   networking.hostName = "mebsuta";
