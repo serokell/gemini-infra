@@ -109,17 +109,22 @@
 
       in {
         devShell = self.devShells.${system}.default;
-        devShells.default = pkgs.mkShell {
-          VAULT_ADDR = "https://vault.serokell.org:8200";
-          SSH_OPTS = "${builtins.concatStringsSep " " self.deploy.sshOpts}";
-          buildInputs = [
-            deploy-rs.packages.${system}.deploy-rs
-            pkgs.vault
-            (pkgs.vault-push-approle-envs self)
-            (pkgs.vault-push-approles self)
-            nix.packages.${system}.nix
-            pkgs.awscli
-          ];
+        devShells = {
+          default = pkgs.mkShell {
+            VAULT_ADDR = "https://vault.serokell.org:8200";
+            SSH_OPTS = "${builtins.concatStringsSep " " self.deploy.sshOpts}";
+            buildInputs = [
+              deploy-rs.packages.${system}.deploy-rs
+              pkgs.vault
+              (pkgs.vault-push-approle-envs self)
+              (pkgs.vault-push-approles self)
+              nix.packages.${system}.nix
+              pkgs.awscli
+            ];
+          };
+          debug = pkgs.mkShell {
+            buildInputs = [ pkgs.strace ];
+          };
         };
 
         # used in GitHub pipeline
