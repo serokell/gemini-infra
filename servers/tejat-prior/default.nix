@@ -80,6 +80,16 @@ with lib;
   services.tzbot = {
     enable = true;
     package = "${profile-root}/tzbot";
+    botConfig = {
+      maxRetries = 3;
+      cacheUsersInfo = "3m";
+      cacheConversationMembers = "3m";
+      feedbackChannel = "C05QQKHU5KN"; # Channel ID for `#tzbot-feedback`
+      feedbackFile = "/var/lib/tzbot/feedback.log";
+      cacheReportDialog = "1h";
+      inverseHelpUsageChance = 15;
+      logLevel = "Info";
+    };
     slackAppToken = "$SLACK_APP_TOKEN";
     slackBotToken = "$SLACK_BOT_TOKEN";
   };
