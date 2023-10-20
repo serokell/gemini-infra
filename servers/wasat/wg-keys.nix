@@ -46,7 +46,7 @@
   # (offboarded) "47" = "YPi4GCRxt1qAQnb4uqYySTju9uDhxzZnTqme07lvfHs="; # Ilya Lubimov (win)
   "48" = "NOSFd1t60ZF0ZTty2iq8IfNydKD1yfq5rP5SDaYGlCE="; # Diogo Castro
   # (offboarded) "49" = "OaSGqg6lMyX+7gXxl3vPVwgAMsInupcP39UODGa7tkE="; # Alexander Vereshchagin
-  "50" = "X5ODBmbcLENAnqiXGVSel5IgSIHxL3nq3PRnYTBhgz4="; # Pasquale Pinto
+  # (offboarded) "50" = "X5ODBmbcLENAnqiXGVSel5IgSIHxL3nq3PRnYTBhgz4="; # Pasquale Pinto
   "51" = "eZldxihhLW8bIhUt2GCAQSAMXU3PYO7Az4w8rKg0TBE="; # Jonn Mostovoy (work laptop)
   "52" = "KSK3+6TuGRyf9xe49C5+q2VhWYhWBbsm+B8UMDxFg3Y="; # Alexander Bantyev @balsoft
   "53" = "wPKA+1WYVAF6QhlLSJAZsk49I0YkoljGaQyA/AgWsjo="; # Alexey Khachiyants (Mac)
