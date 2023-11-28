@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...}:
+{pkgs, lib, config, inputs, ...}:
   let
     inherit (builtins) toJSON;
     inherit (pkgs) writeText;
@@ -7,13 +7,16 @@
     profile = "/nix/var/nix/profiles/per-user/deploy/edna-docker";
   in
   {
+    imports = [
+      inputs.serokell-nix.nixosModules.docker
+    ];
+
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     vault-secrets.secrets.docker-backend.quoteEnvironmentValues = false;
 
     virtualisation.docker = {
       enable = true;
-      logLevel = "warn";
       storageDriver = "overlay2";
       networks.edna = {};
     };
