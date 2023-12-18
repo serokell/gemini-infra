@@ -88,7 +88,11 @@
       };
     } // flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = serokell-nix.lib.pkgsWith nixpkgs.legacyPackages.${system} allOverlays;
+        pkgsAllowUnfree = import nixpkgs {
+          inherit system;
+          config.allowUnfreePredicate = pkg: builtins.elem (pkg.pname) [ "terraform" ];
+        };
+        pkgs = serokell-nix.lib.pkgsWith pkgsAllowUnfree allOverlays;
 
         tfConfigAst = terranix.lib.terranixConfigurationAst {
           inherit system pkgs;

@@ -62,7 +62,7 @@ in {
   # dns server blocking malicious hostnames
   services.dnsmasq = {
     enable = true;
-    servers = [ "1.1.1.1" "1.0.0.1" ];
+    settings.server = [ "1.1.1.1" "1.0.0.1" ];
     resolveLocalQueries = false;
     extraConfig = ''
       interface=wg-serokell
@@ -73,5 +73,5 @@ in {
   };
 
   # dnsmasq needs wireguard interface
-  systemd.services.dnsmasq.after = [ "wireguard-wg-serokell.service" ];
+  systemd.services.dnsmasq.after = [ "wireguard-wg-serokell.service" "efi.mount"];
 }

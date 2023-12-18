@@ -44,12 +44,11 @@
   # machines irrespective of host names.
   # We do not worry about plugging disks into the wrong machine because
   # we will never exchange disks between machines.
-  environment.etc."mdadm.conf".text = ''
-    HOMEHOST hetzner
-  '';
   # The RAIDs are assembled in stage1, so we need to make the config
   # available there.
-  boot.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
+  boot.swraid.mdadmConf = ''
+    HOMEHOST hetzner
+  '';
 
   # Default mdmonitor service does not work, fix it by directing events to the log.
   # See https://github.com/NixOS/nixpkgs/issues/72394
