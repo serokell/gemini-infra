@@ -45,6 +45,12 @@ in {
       script = ''
         ${cfg.package}/bin/@isomorphic-git/cors-proxy start
       '';
+      startLimitBurst = 5;
+      startLimitIntervalSec = 300;
+      serviceConfig = {
+        Restart = "on-failure";
+        RestartSec = 10;
+      };
       environment = {
         PORT = toString cfg.port;
         ALLOW_ORIGIN = cfg.allowOrigin;
