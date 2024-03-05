@@ -4,6 +4,7 @@
     inputs.serokell-nix.nixosModules.serokell-users
     inputs.vault-secrets.nixosModules.vault-secrets
     inputs.serokell-nix.nixosModules.wireguard-monitoring
+    inputs.serokell-nix.lib.systemd.hardenServices
   ];
 
   networking.domain = "gemini.serokell.team";
