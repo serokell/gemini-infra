@@ -24,6 +24,8 @@
 
     tzbot.url = "github:serokell/tzbot";
 
+    tzbot.inputs.serokell-nix.follows = "serokell-nix";
+
     serokell-nix.inputs.nixpkgs.follows = "nixpkgs";
     vault-secrets.inputs.nixpkgs.follows = "nixpkgs";
 
