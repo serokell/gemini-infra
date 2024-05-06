@@ -43,7 +43,7 @@
 
       allOverlays = [
         serokell-nix.overlay
-        vault-secrets.overlay
+        vault-secrets.overlays.default
         composition-c4.overlays.default
         terranix-simple.overlay
       ];
@@ -90,7 +90,7 @@
       let
         pkgsAllowUnfree = import nixpkgs {
           inherit system;
-          config.allowUnfreePredicate = pkg: builtins.elem (pkg.pname) [ "terraform" ];
+          config.allowUnfreePredicate = pkg: builtins.elem (pkg.pname) [ "terraform" "vault" ];
         };
         pkgs = serokell-nix.lib.pkgsWith pkgsAllowUnfree allOverlays;
 
