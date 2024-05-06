@@ -16,6 +16,12 @@ in {
       type = "CNAME";
       records = ["alzirr.\${aws_route53_zone.gemini_serokell_team.name}"];
     };
+    auth-tt_serokell_io = {
+      zone_id = "\${data.aws_route53_zone.serokell_io.zone_id}";
+      name = "auth-tt.serokell.io";
+      type = "CNAME";
+      records = ["alzirr.\${aws_route53_zone.gemini_serokell_team.name}"];
+    };
   } // mkAddressRecords [{
     resource = "alzirr_gemini_serokell_team";
     zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";

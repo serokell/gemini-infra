@@ -116,25 +116,35 @@ in
     };
   };
 
-  vault-secrets.secrets.oauth2_proxy.environmentVariableNamePrefix = "OAUTH2_PROXY";
-  services.oauth2_proxy = {
+  vault-secrets.secrets.oauth2_proxy = {
+    environmentVariableNamePrefix = "OAUTH2_PROXY";
+    services = ["oauth2-proxy"];
+  };
+  services.oauth2-proxy = {
     enable = true;
 
     # contains oauth2 client id, oauth2 client secret, and a cookie secret seed for signing cookies
     keyFile = "${config.vault-secrets.secrets.oauth2_proxy}/environment";
 
     requestLogging = false; # don't log each request
-    redirectURL = "https://tt.serokell.io/oauth2/callback"; # callback url for the auth provider
+    redirectURL = "https://auth-tt.serokell.io/oauth2/callback"; # callback url for the auth provider
     email.domains = [ "serokell.io" ]; # only allow users with '@serokell.io' email address
-    extraConfig.whitelist-domain = [ "tt.serokell.io" "tt2.serokell.io" ]; # allowed domains to redirect to after authentication
+    extraConfig.whitelist-domain = [ "tt.serokell.io" "tt2.serokell.io" "auth-tt.serokell.io" ]; # allowed domains to redirect to after authentication
     cookie.domain = "serokell.io"; # domain to set cookie for after authentication
-    nginx.virtualHosts = [ "swampwalk2" ]; # vhosts to use the proxy for
-
+    nginx = {
+      virtualHosts = { "swampwalk2" = {}; }; # vhosts to use the proxy for
+      domain = "auth-tt.serokell.io";
+    };
     # default cookie name '_oauth2_proxy' is used by jupiter for
     # all '.serokell.io' subdomains, use a different name for tt
     cookie.name = "_oauth2_proxy_tt";
   };
-
-  users.users.oauth2_proxy.group = "oauth2_proxy";
-  users.groups.oauth2_proxy = {};
+  services.nginx.virtualHosts."auth-tt.serokell.io" = {
+    serverName = "auth-tt.serokell.io";
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      return = "404";
+    };
+  };
 }
