@@ -39,6 +39,28 @@ in
       User = "sweater";
       Group = "users";
       ExecStart = "${swampwalk2-profile}/bin/swampwalk-server";
+
+      # hardening options
+      CapabilityBoundingSet = [
+        "CAP_CHOWN"
+        "CAP_SETUID"
+        "CAP_SETGID"
+        "CAP_FOWNER"
+        "CAP_DAC_OVERRIDE"
+      ];
+      AmbientCapabilities = [ "" ];
+      DeviceAllow = "no";
+      KeyringMode = "private";
+      NotifyAccess = "none";
+      PrivateMounts = "yes";
+      PrivateTmp = "yes";
+      ProtectControlGroups = "yes";
+      ProtectProc = "invisible";
+      SupplementaryGroups = [ "" ];
+      Delegate = "no";
+      RemoveIPC = "yes";
+      UMask = "0027";
+      ProcSubset = "pid";
     };
   };
 
