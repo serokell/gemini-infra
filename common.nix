@@ -9,6 +9,7 @@
 
   networking.domain = "gemini.serokell.team";
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkg.pname) [ "vault" ];
   vault-secrets = {
     vaultPrefix = "kv/sys/gemini/${config.networking.hostName}";
     vaultAddress = "https://vault.serokell.org:8200";

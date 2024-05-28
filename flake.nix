@@ -24,6 +24,8 @@
 
     tzbot.url = "github:serokell/tzbot";
 
+    tzbot.inputs.serokell-nix.follows = "serokell-nix";
+
     serokell-nix.inputs.nixpkgs.follows = "nixpkgs";
     vault-secrets.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -43,7 +45,7 @@
 
       allOverlays = [
         serokell-nix.overlay
-        vault-secrets.overlay
+        vault-secrets.overlays.default
         composition-c4.overlays.default
         terranix-simple.overlay
       ];
@@ -90,7 +92,7 @@
       let
         pkgsAllowUnfree = import nixpkgs {
           inherit system;
-          config.allowUnfreePredicate = pkg: builtins.elem (pkg.pname) [ "terraform" ];
+          config.allowUnfreePredicate = pkg: builtins.elem (pkg.pname) [ "terraform" "vault" ];
         };
         pkgs = serokell-nix.lib.pkgsWith pkgsAllowUnfree allOverlays;
 
