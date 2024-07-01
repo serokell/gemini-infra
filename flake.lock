@@ -2551,11 +2551,11 @@
     },
     "nixpkgs_11": {
       "locked": {
-        "lastModified": 1717157358,
-        "narHash": "sha256-qEKNDLsmya+6qSOH2ZmINNYFjSEkIkI/hBLjQ/1GnKs=",
+        "lastModified": 1719840997,
+        "narHash": "sha256-Qcz4H+7u5xu+81el88at+8lGHyEZ7pNwk6nAcyzdkts=",
         "owner": "serokell",
         "repo": "nixpkgs",
-        "rev": "75ae2b23e9438ad3a0fb8b523e8cc244b690ccfa",
+        "rev": "fe065f84d7faf5aec1ba29bfcc8b7993bf2dcf8a",
         "type": "github"
       },
       "original": {
