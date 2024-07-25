@@ -9,7 +9,7 @@ in
   nixpkgs.overlays = import ./overlays.nix;
 
   serokell-users = {
-    wheelUsers = [ "sweater" ];
+    wheelUsers = [ "sweater" "lierdakil" ];
     regularUsers = [ "diogo" ];
   };
 
