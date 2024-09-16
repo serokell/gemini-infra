@@ -13,6 +13,7 @@
       url = "github:StevenBlack/hosts/3.7.1";
       flake = false;
     };
+    nixpkgs-unstable.url = "github:nixos/nixpkgs";
     composition-c4.url = "github:fossar/composition-c4";
     subspace = {
       url = "github:serokell/subspace";
@@ -48,6 +49,9 @@
         vault-secrets.overlays.default
         composition-c4.overlays.default
         terranix-simple.overlay
+        (self: prev: {
+          xray = inputs.nixpkgs-unstable.legacyPackages.${self.system}.xray;
+        })
       ];
 
       servers = mapAttrs (path: _: import (./servers + "/${path}"))

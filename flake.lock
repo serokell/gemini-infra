@@ -1291,7 +1291,7 @@
         "nixpkgs-2111": "nixpkgs-2111_2",
         "nixpkgs-2205": "nixpkgs-2205_2",
         "nixpkgs-2211": "nixpkgs-2211_2",
-        "nixpkgs-unstable": "nixpkgs-unstable_2",
+        "nixpkgs-unstable": "nixpkgs-unstable_3",
         "old-ghc-nix": "old-ghc-nix_2",
         "stackage": "stackage_2",
         "tullia": "tullia_2"
@@ -1341,7 +1341,7 @@
         "nixpkgs-2205": "nixpkgs-2205_3",
         "nixpkgs-2211": "nixpkgs-2211_3",
         "nixpkgs-2305": "nixpkgs-2305",
-        "nixpkgs-unstable": "nixpkgs-unstable_3",
+        "nixpkgs-unstable": "nixpkgs-unstable_4",
         "old-ghc-nix": "old-ghc-nix_3",
         "stackage": [
           "tzbot",
@@ -2503,6 +2503,21 @@
     },
     "nixpkgs-unstable_2": {
       "locked": {
+        "lastModified": 1726430219,
+        "narHash": "sha256-LjRTuUjkvTvmnfSSBmXYMguYQE8JuAYLWyUtFDpR0Lg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d413e712d5340e38102108c49f5989fb86bdb117",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable_3": {
+      "locked": {
         "lastModified": 1675758091,
         "narHash": "sha256-7gFSQbSVAFUHtGCNHPF7mPc5CcqDk9M2+inlVPZSneg=",
         "owner": "NixOS",
@@ -2517,7 +2532,7 @@
         "type": "github"
       }
     },
-    "nixpkgs-unstable_3": {
+    "nixpkgs-unstable_4": {
       "locked": {
         "lastModified": 1690720142,
         "narHash": "sha256-GywuiZjBKfFkntQwpNQfL+Ksa2iGjPprBGL0/psgRZM=",
@@ -2929,6 +2944,7 @@
         "hermetic": "hermetic",
         "nix": "nix_3",
         "nixpkgs": "nixpkgs_11",
+        "nixpkgs-unstable": "nixpkgs-unstable_2",
         "serokell-nix": "serokell-nix_2",
         "stevenblack-hosts": "stevenblack-hosts",
         "subspace": "subspace",
