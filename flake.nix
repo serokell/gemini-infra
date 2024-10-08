@@ -6,14 +6,12 @@
   };
 
   inputs = {
-    nix.url = "github:nixos/nix/2.10-maintenance";
     flake-compat.flake = false;
     hermetic.url = "github:serokell/hermetic";
     stevenblack-hosts = {
       url = "github:StevenBlack/hosts/3.7.1";
       flake = false;
     };
-    nixpkgs-unstable.url = "github:nixos/nixpkgs";
     composition-c4.url = "github:fossar/composition-c4";
     subspace = {
       url = "github:serokell/subspace";
@@ -38,7 +36,7 @@
     terranix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nix, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
+  outputs = { self, nixpkgs, serokell-nix, deploy-rs, flake-utils, vault-secrets
     , composition-c4, terranix, terranix-simple, ... }@inputs:
     let
       inherit (nixpkgs.lib) nixosSystem filterAttrs const recursiveUpdate;
@@ -49,9 +47,6 @@
         vault-secrets.overlays.default
         composition-c4.overlays.default
         terranix-simple.overlay
-        (self: prev: {
-          xray = inputs.nixpkgs-unstable.legacyPackages.${self.system}.xray;
-        })
       ];
 
       servers = mapAttrs (path: _: import (./servers + "/${path}"))
@@ -127,7 +122,6 @@
             pkgs.vault
             (pkgs.vault-push-approle-envs self)
             (pkgs.vault-push-approles self)
-            nix.packages.${system}.nix
             pkgs.awscli
           ];
         };
