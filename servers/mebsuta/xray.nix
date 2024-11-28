@@ -4,10 +4,11 @@ let
   vs = config.vault-secrets.secrets;
   dataDir = "/var/lib/xray";
   xrayPort = 9433;
+  xrayPortAlt = 9434;
 in
 {
   networking.firewall.allowedTCPPorts = [
-    xrayPort
+    xrayPort xrayPortAlt
   ];
   users.users.xray = {
     isSystemUser = true;
@@ -64,6 +65,36 @@ in
             };
           };
         }
+        { port = xrayPortAlt;
+          protocol = "vless";
+          tag = "vless-alt";
+          sniffing = {
+            enable = true;
+            destOverrides = ["http" "tls"];
+          };
+          settings = {
+            clients = [
+              {
+                id = clientIdPlaceholder;
+                flow = "xtls-rprx-vision";
+              }
+            ];
+            decryption = "none";
+          };
+          streamSettings = {
+            network = "tcp";
+            security = "reality";
+            realitySettings = {
+              show = false;
+              dest = "vpn.serokell.net:443";
+              serverNames = [
+                "vpn.serokell.net"
+              ];
+              privateKey = privateKeyPlaceholder;
+              shortIds = [ shortIdPlaceholder ];
+            };
+          };
+        }
       ];
       outbounds = [
         { protocol = "freedom";
@@ -100,7 +131,7 @@ in
       private_key="$(cat "${vs.xray}/private-key")"
       client_id="$(cat "${vs.xray}/client-id")"
       short_id="$(cat "${vs.xray}/short-id")"
-      ${pkgs.gnused}/bin/sed -i -e "s/${privateKeyPlaceholder}/$private_key/" -e "s/${clientIdPlaceholder}/$client_id/" -e "s/${shortIdPlaceholder}/$short_id/" \
+      ${pkgs.gnused}/bin/sed -i -e "s/${privateKeyPlaceholder}/$private_key/g" -e "s/${clientIdPlaceholder}/$client_id/g" -e "s/${shortIdPlaceholder}/$short_id/g" \
         "${config.services.xray.settingsFile}"
     '';
     serviceConfig = {
