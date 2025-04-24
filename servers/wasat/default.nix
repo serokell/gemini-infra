@@ -64,12 +64,12 @@ in {
     enable = true;
     settings.server = [ "1.1.1.1" "1.0.0.1" ];
     resolveLocalQueries = false;
-    extraConfig = ''
-      interface=wg-serokell
-      bind-interfaces
-      cache-size=4096
-      addn-hosts=${addn-hosts}
-    '';
+    settings = {
+      interface = "wg-serokell";
+      bind-interfaces = true;
+      cache-size = 4096;
+      addn-hosts = "${addn-hosts}";
+    };
   };
 
   # dnsmasq needs wireguard interface
