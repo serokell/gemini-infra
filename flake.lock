@@ -3564,11 +3564,11 @@
         "weeder-src": "weeder-src"
       },
       "locked": {
-        "lastModified": 1740125565,
-        "narHash": "sha256-qTtZeIkG2ZyeXoNt9wuRRbcRyCLMEFkagwsLqB8Bn6A=",
+        "lastModified": 1762770577,
+        "narHash": "sha256-Vwrq42sIgnHUa1FVhdwuj1q6A1S+skMRt/l13skAEDQ=",
         "owner": "serokell",
         "repo": "serokell.nix",
-        "rev": "f8cd23e1da7a63c390c64e18921c29953bd033db",
+        "rev": "673e9446e4534c07a65332949d1b51b72d2a7893",
         "type": "github"
       },
       "original": {
