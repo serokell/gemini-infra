@@ -23,7 +23,7 @@ in {
   # Public DNS
   resource.aws_eip.tejat-prior = {
     instance = "\${aws_instance.tejat-prior.id}";
-    vpc = true;
+    domain = "vpc";
   };
   resource.aws_route53_record = lib.mapAttrs (_: lib.recursiveUpdate { ttl = "60"; }) {
     mumble_cname = {
