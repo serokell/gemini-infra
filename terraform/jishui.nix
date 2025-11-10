@@ -15,7 +15,7 @@ in {
   # Public DNS
   resource.aws_eip.jishui = {
     instance = "\${aws_instance.jishui.id}";
-    vpc = true;
+    domain = "vpc";
   };
 
   resource.aws_route53_record = {

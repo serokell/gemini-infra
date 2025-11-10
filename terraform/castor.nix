@@ -15,7 +15,7 @@ in {
   # Public DNS
   resource.aws_eip.castor = {
     instance = "\${aws_instance.castor.id}";
-    vpc = true;
+    domain = "vpc";
   };
 
   resource.aws_route53_record = {
