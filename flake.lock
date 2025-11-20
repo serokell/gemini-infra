@@ -4091,11 +4091,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1714988039,
-        "narHash": "sha256-ZYPX1Skhy9ZEfeRkAzdqO+MvjBdF4a7blrXcTJ3q/Yw=",
+        "lastModified": 1763483116,
+        "narHash": "sha256-V6qzGBkEBnjfdMZVkjQsJy6KsP4ofNWPBPy4ZwXySwE=",
         "owner": "serokell",
         "repo": "vault-secrets",
-        "rev": "44ef2078d9149aa3b23fe132e8c8d8bbd624c06c",
+        "rev": "2d76b2bfcfd45dc0d23eefb7353425fb593c4d03",
         "type": "github"
       },
       "original": {
