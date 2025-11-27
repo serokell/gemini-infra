@@ -3,12 +3,11 @@
 let
   vs = config.vault-secrets.secrets;
   dataDir = "/var/lib/xray";
-  xrayPort = 9433;
-  xrayPortAlt = 9434;
+  xrayPort = 9434;
 in
 {
   networking.firewall.allowedTCPPorts = [
-    xrayPort xrayPortAlt
+    xrayPort
   ];
   users.users.xray = {
     isSystemUser = true;
@@ -17,9 +16,12 @@ in
     createHome = true;
   };
   users.groups.xray = {};
-  vault-secrets.secrets.xray = {
-    user = "xray";
-    group = "xray";
+  vault-secrets = {
+    vaultPrefix = lib.mkForce "kv/sys/common";
+    secrets.xray = {
+      user = "xray";
+      group = "xray";
+    };
   };
   services.xray = {
     enable = true;
@@ -37,48 +39,13 @@ in
       inbounds = [
         { port = xrayPort;
           protocol = "vless";
-          tag = "vless";
-          sniffing = {
-            enable = true;
-            destOverrides = ["http" "tls"];
-          };
-          settings = {
-            clients = [
-              {
-                id = clientIdPlaceholder;
-                flow = "xtls-rprx-vision";
-              }
-            ];
-            decryption = "none";
-          };
-          streamSettings = {
-            network = "tcp";
-            security = "reality";
-            realitySettings = {
-              show = false;
-              dest = "serokell.io:443";
-              serverNames = [
-                "serokell.io"
-              ];
-              privateKey = privateKeyPlaceholder;
-              shortIds = [ shortIdPlaceholder ];
-            };
-          };
-        }
-        { port = xrayPortAlt;
-          protocol = "vless";
           tag = "vless-alt";
           sniffing = {
             enable = true;
             destOverrides = ["http" "tls"];
           };
           settings = {
-            clients = [
-              {
-                id = clientIdPlaceholder;
-                flow = "xtls-rprx-vision";
-              }
-            ];
+            clients = [];
             decryption = "none";
           };
           streamSettings = {
@@ -129,10 +96,13 @@ in
     preStart = ''
       cp --no-preserve=mode "${settings}" "${config.services.xray.settingsFile}"
       private_key="$(cat "${vs.xray}/private-key")"
-      client_id="$(cat "${vs.xray}/client-id")"
       short_id="$(cat "${vs.xray}/short-id")"
-      ${pkgs.gnused}/bin/sed -i -e "s/${privateKeyPlaceholder}/$private_key/g" -e "s/${clientIdPlaceholder}/$client_id/g" -e "s/${shortIdPlaceholder}/$short_id/g" \
+      ${pkgs.gnused}/bin/sed -i -e "s/${privateKeyPlaceholder}/$private_key/g" -e "s/${shortIdPlaceholder}/$short_id/g" \
         "${config.services.xray.settingsFile}"
+      clients="$(${pkgs.jq}/bin/jq 'to_entries | map({email: .key, id: .value, flow: "xtls-rprx-vision"})' "${vs.xray}/client-ids")"
+      ${pkgs.jq}/bin/jq ".inbounds[].settings.clients += $clients" \
+        "${config.services.xray.settingsFile}" > "${config.services.xray.settingsFile}.tmp"
+      mv "${config.services.xray.settingsFile}.tmp" "${config.services.xray.settingsFile}"
     '';
     serviceConfig = {
       # In nixpkgs this service uses DynamicUser=true. However, this doesn't work with vault-secrets because the user that needs
