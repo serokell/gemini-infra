@@ -48,9 +48,9 @@
   # (offboarded) "49" = "OaSGqg6lMyX+7gXxl3vPVwgAMsInupcP39UODGa7tkE="; # Alexander Vereshchagin
   # (offboarded) "50" = "X5ODBmbcLENAnqiXGVSel5IgSIHxL3nq3PRnYTBhgz4="; # Pasquale Pinto
   "51" = "eZldxihhLW8bIhUt2GCAQSAMXU3PYO7Az4w8rKg0TBE="; # Jonn Mostovoy (work laptop)
-  "52" = "KSK3+6TuGRyf9xe49C5+q2VhWYhWBbsm+B8UMDxFg3Y="; # Alexander Bantyev @balsoft
-  "53" = "wPKA+1WYVAF6QhlLSJAZsk49I0YkoljGaQyA/AgWsjo="; # Alexey Khachiyants (Mac)
-  "54" = "noNARSZ3ARTol2/UT4fq5UlM5FR8dtcxSuq7E/zWWSA="; # Dmitri Puzyrev (ubuntu)
+  # (offboarded) "52" = "KSK3+6TuGRyf9xe49C5+q2VhWYhWBbsm+B8UMDxFg3Y="; # Alexander Bantyev @balsoft
+  # (offboarded) "53" = "wPKA+1WYVAF6QhlLSJAZsk49I0YkoljGaQyA/AgWsjo="; # Alexey Khachiyants (Mac)
+  # (offboarded) "54" = "noNARSZ3ARTol2/UT4fq5UlM5FR8dtcxSuq7E/zWWSA="; # Dmitri Puzyrev (ubuntu)
   # (offboarded) "55" = "qW2StgTSXBfmqo9++Bde76UZegv4gKH+wnR9eNmTRhw="; # Andrey Demidenko (tarvos)
   # (offboarded) "56" = "sW7lM1ARU3SyDIybTKoBcnUduNBkC4q3MmQFwtVbySw="; # Andrey Demidenko (phone)
   "57" = "yiA60l8EXtBope5DSpRScCKLWRDesyShPlGXPP3tjD8="; # Ivan Gromakovskii (phone)
@@ -60,7 +60,7 @@
   "61" = "88+XZWfgi0QRc19dUPjgZi/1BzsbRrxVOBOku1OHqUc="; # HQ (mac mini M1)
   # (offboarded) "62" = "Cab+tyDPjWs9ewdbJ0bZysO5Ra4UuEC0OTJPNn84sSE="; # Vladimir Serov (yuna)
   "63" = "mqu2BsyyaKPej+Q3nYLurDiCOkuFUi7b46sTnLUhQQI="; # Leonid Vasilev (linux laptop)
-  "64" = "5vAvQjwG6FB/QtaPzsvSawOmsqq3m6uPHi6JUmlSnU4="; # Pasquale Pinto (Raspberry Pi 4B)
-  "65" = "0mC/xGiV9rl4l4NAPx/GhVvzF9l+CNK+uBEpAJLe8Qc="; # Dmitriy Mozhevitin (linux laptop)
+  # (offboarded) "64" = "5vAvQjwG6FB/QtaPzsvSawOmsqq3m6uPHi6JUmlSnU4="; # Pasquale Pinto (Raspberry Pi 4B)
+  # (offboarded) "65" = "0mC/xGiV9rl4l4NAPx/GhVvzF9l+CNK+uBEpAJLe8Qc="; # Dmitriy Mozhevitin (linux laptop)
   "66" = "lh4hOn/vkAxr7UUtczEiZG017+PEtNn2P5lpcDnVOGw="; # Dmitry Laptov
 }
