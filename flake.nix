@@ -95,7 +95,7 @@
         };
         pkgs = serokell-nix.lib.pkgsWith pkgsAllowUnfree allOverlays;
 
-        tfConfigAst = terranix.lib.terranixConfigurationAst {
+        tfConfigAst = terranix.lib.terranixConfiguration {
           inherit system pkgs;
           modules = [
             terranix-simple.terranixModules
