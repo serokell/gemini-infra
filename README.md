@@ -37,10 +37,7 @@ All necessary programs and dependencies are provided by Nix in `nix-shell` or `n
 
 | Name        | Function              | IP            |
 | :---------: | :-------------------: | :-----------: |
-| Alhena      | Hermetic              |               |
 | Alzirr      | Swampwalk/TT          | 135.181.78.88 |
-| Castor      | EDNA Staging          |               |
-| Jishui      | EDNA Demo             |               |
 | Mebsuta     | vpn.serokell.net      |               |
 | Tejat Prior | Mumble + tzbot        |               |
 | Wasat       | Old Wireguard server  |               |

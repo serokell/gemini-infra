@@ -7,7 +7,6 @@
 
   inputs = {
     flake-compat.flake = false;
-    hermetic.url = "github:serokell/hermetic";
     stevenblack-hosts = {
       url = "github:StevenBlack/hosts/3.7.1";
       flake = false;
