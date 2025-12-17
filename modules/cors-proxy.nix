@@ -12,7 +12,7 @@ let
     };
     dontNpmBuild = true;
     postInstall = ''
-      wrapProgram $out/bin/@isomorphic-git/cors-proxy --prefix PATH : ${pkgs.lib.makeBinPath (with pkgs; [ nodejs-18_x ])}
+      wrapProgram $out/bin/@isomorphic-git/cors-proxy --prefix PATH : ${pkgs.lib.makeBinPath (with pkgs; [ nodejs_24 ])}
     '';
   };
   cfg = config.services.cors-proxy;
