@@ -12,6 +12,10 @@ let
     };
     dontNpmBuild = true;
     postInstall = ''
+      # Remove broken symlinks in node_modules/.bin before fixupPhase checks them
+      find $out/lib/node_modules/@isomorphic-git/cors-proxy/node_modules/.bin \
+        -type l ! -exec test -e {} \; -delete 2>/dev/null || true
+
       wrapProgram $out/bin/@isomorphic-git/cors-proxy --prefix PATH : ${pkgs.lib.makeBinPath (with pkgs; [ nodejs_24 ])}
     '';
   };
