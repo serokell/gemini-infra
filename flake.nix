@@ -100,7 +100,6 @@
           modules = [
             terranix-simple.terranixModules
             ./terraform/main.nix
-            ./terraform/alhena.nix
             ./terraform/alzirr.nix
             ./terraform/castor.nix
             ./terraform/jishui.nix
