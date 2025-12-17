@@ -101,7 +101,6 @@
             terranix-simple.terranixModules
             ./terraform/main.nix
             ./terraform/alzirr.nix
-            ./terraform/jishui.nix
             ./terraform/mebsuta.nix
             ./terraform/tejat-prior.nix
             ./terraform/wasat.nix
