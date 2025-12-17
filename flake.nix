@@ -14,7 +14,7 @@
     };
     composition-c4.url = "github:fossar/composition-c4";
     subspace = {
-      url = "github:serokell/subspace";
+      url = "github:serokell/subspace/sereja/upstream-wg-bond";
       # subspace fails with
       # subspace-start: line 11: 1607212 Bad system call         (core dumped)
       # with newer nixpkgs
