@@ -25,27 +25,15 @@ in {
     instance = "\${aws_instance.tejat-prior.id}";
     domain = "vpc";
   };
-  resource.aws_route53_record = lib.mapAttrs (_: lib.recursiveUpdate { ttl = "60"; }) {
+  resource.aws_route53_record = {
     mumble_cname = {
       zone_id = "\${data.aws_route53_zone.serokell_team.zone_id}";
       name = "mumble.\${data.aws_route53_zone.serokell_team.name}";
       type = "CNAME";
       records = ["\${aws_route53_record.tejat-prior_gemini_serokell_team_ipv4.name}"];
+      ttl = "60";
     };
 
-    ligo_webide_cname = {
-      zone_id = "\${data.aws_route53_zone.serokell_team.zone_id}";
-      name = "ligo-webide.\${data.aws_route53_zone.serokell_team.name}";
-      type = "CNAME";
-      records = ["\${aws_route53_record.tejat-prior_gemini_serokell_team_ipv4.name}"];
-    };
-
-    ligo_webide_cors_proxy_cname = {
-      zone_id = "\${data.aws_route53_zone.serokell_team.zone_id}";
-      name = "ligo-webide-cors-proxy.\${data.aws_route53_zone.serokell_team.name}";
-      type = "CNAME";
-      records = ["\${aws_route53_record.tejat-prior_gemini_serokell_team_ipv4.name}"];
-    };
   } // mkAddressRecords [{
     resource = "tejat-prior_gemini_serokell_team";
     zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
