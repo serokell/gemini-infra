@@ -2587,16 +2587,15 @@
         "wg-bond": "wg-bond"
       },
       "locked": {
-        "lastModified": 1765934377,
+        "lastModified": 1766139555,
         "narHash": "sha256-U+7JXlah+uP7rl2svKt8RzUGY7fjMh0LVN9IgWSvr3M=",
         "owner": "serokell",
         "repo": "subspace",
-        "rev": "85d6bdfb543455762077073ba3961ea63b9d3773",
+        "rev": "5f4072040fc1df611316d9eaa0bc6da9c6fd7e80",
         "type": "github"
       },
       "original": {
         "owner": "serokell",
-        "ref": "sereja/upstream-wg-bond",
         "repo": "subspace",
         "type": "github"
       }
