@@ -7,7 +7,6 @@
 
   inputs = {
     flake-compat.flake = false;
-    hermetic.url = "github:serokell/hermetic";
     stevenblack-hosts = {
       url = "github:StevenBlack/hosts/3.7.1";
       flake = false;
@@ -95,15 +94,12 @@
         };
         pkgs = serokell-nix.lib.pkgsWith pkgsAllowUnfree allOverlays;
 
-        tfConfigAst = terranix.lib.terranixConfigurationAst {
+        tfConfigAst = terranix.lib.terranixConfiguration {
           inherit system pkgs;
           modules = [
             terranix-simple.terranixModules
             ./terraform/main.nix
-            ./terraform/alhena.nix
             ./terraform/alzirr.nix
-            ./terraform/castor.nix
-            ./terraform/jishui.nix
             ./terraform/mebsuta.nix
             ./terraform/tejat-prior.nix
             ./terraform/wasat.nix
