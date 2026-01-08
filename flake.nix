@@ -102,7 +102,6 @@
             ./terraform/alzirr.nix
             ./terraform/mebsuta.nix
             ./terraform/tejat-prior.nix
-            ./terraform/wasat.nix
           ];
         };
 
