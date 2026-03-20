@@ -13,6 +13,12 @@ in
     regularUsers = [ "diogo" ];
   };
 
+  users.users.swampwalk = {
+    isNormalUser = true;
+    group = "users";
+    linger = true;
+  };
+
   environment.systemPackages = with pkgs; [
     stack
     git
@@ -36,7 +42,7 @@ in
     path = [ "/run/wrappers" ];
     serviceConfig = {
       Restart = "on-failure";
-      User = "sweater";
+      User = "swampwalk";
       Group = "users";
       ExecStart = "${swampwalk2-profile}/bin/swampwalk-server";
 
