@@ -74,7 +74,7 @@ in
     isSystemUser = true;
     useDefaultShell = true;
 
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA1MvqWKMAejgaBfm0mXqwRK7QZ6NNOzCGj9aX+tiiow" ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB3m/K118HolTtbYXgzLIrl+ZjyiJotN907dWJOfWNws" ];
 
     group = "deploy";
   };

@@ -71,8 +71,6 @@
     in {
       nixosConfigurations = mapAttrs (const mkSystem) servers;
 
-      nixosModules = import ./modules;
-
       deploy = {
         magicRollback = true;
         autoRollback = true;

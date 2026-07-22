@@ -10,17 +10,12 @@ with lib;
     inputs.tzbot.nixosModules.default
   ];
 
-  networking.firewall =
-    { allowedTCPPorts = [ config.services.murmur.port ];
-      allowedUDPPorts = [ config.services.murmur.port ];
-    };
-
   users.users.deploy = {
     isSystemUser = true;
     useDefaultShell = true;
     group = "deploy";
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAdYHfE6k3bQ8xRy8r0MmOeLzyFlTuVbPPjVjXjeRUXD tzbot"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOL8Mv5pSRuc5TFdx0YcJK9I93KG80W/TqnCqTk1uqiN"
     ];
   };
 
@@ -39,23 +34,6 @@ with lib;
   ];
 
   users.groups.deploy = {};
-
-  services.murmur =
-    { enable = true;
-      welcometext = "Welcome to the SRE Serokell Mumble server, enjoy your stay!";
-      hostName = config.networking.hostName;
-      password = "$MURMUR_PASSWORD";
-      extraConfig = ''
-        allowping = false
-        host =
-      '';
-    };
-
-  vault-secrets.secrets.murmur =
-   { user = "murmur";
-  };
-
-  systemd.services.murmur.serviceConfig.EnvironmentFile = "${config.vault-secrets.secrets.murmur}/environment";
 
   services.tzbot = {
     enable = true;
