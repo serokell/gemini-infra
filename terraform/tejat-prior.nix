@@ -16,7 +16,6 @@ in {
       "\${aws_security_group.http.id}"
       "\${aws_security_group.ssh.id}"
       "\${aws_security_group.wireguard.id}"
-      "\${aws_security_group.mumble.id}"
     ];
   };
 
@@ -25,16 +24,7 @@ in {
     instance = "\${aws_instance.tejat-prior.id}";
     domain = "vpc";
   };
-  resource.aws_route53_record = {
-    mumble_cname = {
-      zone_id = "\${data.aws_route53_zone.serokell_team.zone_id}";
-      name = "mumble.\${data.aws_route53_zone.serokell_team.name}";
-      type = "CNAME";
-      records = ["\${aws_route53_record.tejat-prior_gemini_serokell_team_ipv4.name}"];
-      ttl = "60";
-    };
-
-  } // mkAddressRecords [{
+  resource.aws_route53_record = mkAddressRecords [{
     resource = "tejat-prior_gemini_serokell_team";
     zone_id = "\${aws_route53_zone.gemini_serokell_team.zone_id}";
     name = "tejat-prior.\${aws_route53_zone.gemini_serokell_team.name}";

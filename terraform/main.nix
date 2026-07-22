@@ -105,23 +105,6 @@ in {
         ];
       };
 
-      # Allow Mumble traffic
-      mumble = {
-        description = "Allow inbound and outbound traffic of Mumble(Murmur) server";
-
-        ingress = map mkGress [
-          {
-            port = 64738;
-            protocol = "tcp";
-          }
-
-          {
-            port = 64738;
-            protocol = "udp";
-          }
-        ];
-      };
-
       # Allow wireguard traffic
       wireguard =  {
         description = "Allow inbound and outbound traffic for wireguard";

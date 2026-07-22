@@ -1382,6 +1382,21 @@
         "type": "indirect"
       }
     },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1784254960,
+        "narHash": "sha256-iI88R3wHz8wTKQb5orvpc51L/Xr64AJyxid/0MKa/b8=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "incl": {
       "inputs": {
         "nixlib": [
@@ -2442,11 +2457,11 @@
         "weeder-src": "weeder-src"
       },
       "locked": {
-        "lastModified": 1781186548,
-        "narHash": "sha256-wd3ZejDr8SEnUeBTQqEINRLVR96xjVfW4DCwA2Yzz/k=",
+        "lastModified": 1784541270,
+        "narHash": "sha256-qjrqE5Jy+TZUcB2cqr6spucPek+9VaF4l661oaSC+Ak=",
         "owner": "serokell",
         "repo": "serokell.nix",
-        "rev": "842f47104adb64a0430291e762ff9b2aeec7141f",
+        "rev": "4a3751d1861fac53962fdaa8ff141aad77131a6d",
         "type": "github"
       },
       "original": {
@@ -2649,17 +2664,18 @@
     "terranix": {
       "inputs": {
         "flake-parts": "flake-parts",
+        "import-tree": "import-tree",
         "nixpkgs": [
           "nixpkgs"
         ],
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1779965098,
-        "narHash": "sha256-Jh0Zk+g0pEbNopADEtqvrnhrl83rlNFHpn3Zhz4s+VM=",
+        "lastModified": 1784465933,
+        "narHash": "sha256-5fZTF5lCVnHisTmXICtIIjHAEsqDXx3RgD+Q/r5Bxpg=",
         "owner": "terranix",
         "repo": "terranix",
-        "rev": "36ed5bdee452978d0e9c4450de872483ab541006",
+        "rev": "f2f0ca1895f15e18e308769bdae77030ae093b8c",
         "type": "github"
       },
       "original": {
@@ -2677,11 +2693,11 @@
         "vpcModule": "vpcModule"
       },
       "locked": {
-        "lastModified": 1765552107,
-        "narHash": "sha256-nCUcxPnmlKvKFQevwzqsszAtCbqfY6Ta0tRRNtbYUmE=",
+        "lastModified": 1784728276,
+        "narHash": "sha256-v0VmrlE8Vjwe+c7+/nW3bYp0Uov3hc9ojcB+hXLn4sw=",
         "ref": "refs/heads/main",
-        "rev": "6fa151104ace0592f3d0a32298177998498150c1",
-        "revCount": 26,
+        "rev": "7760518c3030c84624841aedeb721fd25f9621dd",
+        "revCount": 28,
         "type": "git",
         "url": "ssh://git@github.com/serokell/terranix-simple"
       },
@@ -2844,11 +2860,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781708137,
-        "narHash": "sha256-8QdC9+pKT1fnluDd/Cdt3FbrLdjayLFTZX9FxRNoo38=",
+        "lastModified": 1784731125,
+        "narHash": "sha256-t4oqLDuwSIZbJLbNkqf4FQDLILvtIprlElNyYYLjTbs=",
         "owner": "serokell",
         "repo": "vault-secrets",
-        "rev": "55d149b4afd73bd30ce340a0c0c685132618b9cb",
+        "rev": "b086eeef59524fe402df9b0489396f8162988a2c",
         "type": "github"
       },
       "original": {

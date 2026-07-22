@@ -48,12 +48,7 @@
   # available there.
   boot.swraid.mdadmConf = ''
     HOMEHOST hetzner
-  '';
-
-  # Default mdmonitor service does not work, fix it by directing events to the log.
-  # See https://github.com/NixOS/nixpkgs/issues/72394
-  systemd.services.mdmonitor.serviceConfig.Environment = ''
-    "MDADM_MONITOR_ARGS=--scan --syslog"
+    PROGRAM ${pkgs.util-linux}/bin/logger -t mdadm
   '';
 
   # Network (Hetzner uses static IP assignments, and we don't use DHCP here)
