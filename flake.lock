@@ -286,11 +286,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1781627888,
-        "narHash": "sha256-5yHuAh9k7rT7rtf3uRaXkiUyYvQE9oaCgzhprLm2mr8=",
+        "lastModified": 1786361680,
+        "narHash": "sha256-IxaZkb9rCGEZ+yGndxKXONeIEcKMzoFUsvLTB5G/caw=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "6d3087eedff75a715b40c0e124ba15d2dd7bec28",
+        "rev": "16901271e5b30b591e56f7a84f25f186fb20f3e1",
         "type": "github"
       },
       "original": {
@@ -2457,11 +2457,11 @@
         "weeder-src": "weeder-src"
       },
       "locked": {
-        "lastModified": 1784541270,
-        "narHash": "sha256-qjrqE5Jy+TZUcB2cqr6spucPek+9VaF4l661oaSC+Ak=",
+        "lastModified": 1786003061,
+        "narHash": "sha256-ob361f+G7Y2gbYscpREJkb1MRt48QVY3mixGJ91jOdk=",
         "owner": "serokell",
         "repo": "serokell.nix",
-        "rev": "4a3751d1861fac53962fdaa8ff141aad77131a6d",
+        "rev": "9e0f70d7020fe6585ff550ce347452afc1db332a",
         "type": "github"
       },
       "original": {
